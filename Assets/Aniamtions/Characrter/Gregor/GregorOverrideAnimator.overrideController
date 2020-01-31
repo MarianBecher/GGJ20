@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!221 &22100000
+AnimatorOverrideController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: GregorOverrideAnimator
+  m_Controller: {fileID: 9100000, guid: 7476832deb86ba74c943b78ef56c86cd, type: 2}
+  m_Clips:
+  - m_OriginalClip: {fileID: 7400000, guid: d0baee11281c749409652587a8f5c544, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 19a67ce7a43191a4c8761ed1ef6980cd, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 759bfdcb1e94cbf489d8fbf0bc428079, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 3fad4286d3666ae4aa5a0dbd978553c3, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 41789af750ebc094ab6c903aa6eb528a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 0630bdf774f57994198377734d1ffef9, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 4ed0d87c6ab501144b0d04f3c98b25b7, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 7b3bc27d1bfcd9e4ba0dbf11f7d2ea0a, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: a624faba001141f4baba8b0ee82dc372, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 1f6f44d9bd6174d4c841fc06580d757c, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 9b7afffe941850f42af169af7190764a, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: 4dfd14383e87a0e42858a036ac2b8f97, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 51cbe04372af5cc4abc9c2617b57ee67, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: ab0b9e2171dd90244af7e8b65f173c7d, type: 2}
+  - m_OriginalClip: {fileID: 7400000, guid: 90bf88d7557a505419e28dbecf58fbad, type: 2}
+    m_OverrideClip: {fileID: 7400000, guid: fde66bfbc33ea7e4186d462a44b99425, type: 2}
