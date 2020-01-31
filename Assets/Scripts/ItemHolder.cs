@@ -2,18 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemHolder : MonoBehaviour
+public class ItemHolder : Interactable
 {
-    [SerializeField] private GameObject highlight;
-
     [SerializeField] private GameObject container;
 
     private Item item;
 
-    private void Awake()
-    {
-        this.highlight.SetActive(false);
-    }
 
     public bool HasItem()
     {
@@ -40,15 +34,5 @@ public class ItemHolder : MonoBehaviour
         this.item.transform.parent = null;
 
         return this.item;
-    }
-
-    public void EnableHighlight()
-    {
-        this.highlight.SetActive(true);
-    }
-
-    public void DisableHighlight()
-    {
-        this.highlight.SetActive(false);
     }
 }

@@ -19,8 +19,7 @@ public class Character : MonoBehaviour
 
 
     private Item _currentItem;
-    private Item _possibleItemToSelect;
-    private ItemHolder _possibleItemHolder;
+    private Interactable _possibleInteractable;
     private int _obstacleCount = 0;
     private bool FreeSpaceInFront => _obstacleCount == 0;
 
@@ -64,6 +63,7 @@ public class Character : MonoBehaviour
     {
         bool actionDone = false;
         if (!actionDone) { actionDone = _TryInteractWithHolder(); }
+        if (!actionDone) { actionDone = _TryInteractWithWorkBench(); }
         if (!actionDone) { actionDone = _TryPickupItem(); }
         if (!actionDone) { actionDone = _TryDropItem(); }
         //Pickup
@@ -74,12 +74,13 @@ public class Character : MonoBehaviour
 
     private bool _TryPickupItem()
     {
-        if (_currentItem || !_possibleItemToSelect)
+        if (_currentItem || !_possibleInteractable || !(_possibleInteractable is Item))
             return false;
 
-        _possibleItemToSelect.Pickup();
-        _HoldItem(_possibleItemToSelect);
-        _possibleItemToSelect = null;
+        Item itm = _possibleInteractable as Item;
+        itm.Pickup();
+        _HoldItem(itm);
+        _possibleInteractable = null;
         return true;
     }
 
@@ -94,15 +95,31 @@ public class Character : MonoBehaviour
         return true;
     }
 
-    private bool _TryInteractWithHolder()
+    private bool _TryInteractWithWorkBench()
     {
-        if (!_possibleItemHolder)
+        if(!_possibleInteractable || !_currentItem || !(_possibleInteractable is WorkingBench))
             return false;
 
-        //Put Item
-        if (_currentItem && !_possibleItemHolder.HasItem())
+        WorkingBench bench = _possibleInteractable as WorkingBench; 
+        if(bench.Interact(_currentItem))
         {
-            if(_possibleItemHolder.PutItem(_currentItem))
+            _currentItem = null;
+        }
+
+        return true;
+    }
+
+    private bool _TryInteractWithHolder()
+    {
+        if (!_possibleInteractable || !(_possibleInteractable is ItemHolder))
+            return false;
+
+        ItemHolder holder = _possibleInteractable as ItemHolder;
+
+        //Put Item
+        if (_currentItem && !holder.HasItem())
+        {
+            if(holder.PutItem(_currentItem))
             {
                 _currentItem = null;
                 return true;
@@ -114,9 +131,9 @@ public class Character : MonoBehaviour
         }
 
         //Get Item
-        if (!_currentItem && _possibleItemHolder.HasItem())
+        if (!_currentItem && holder.HasItem())
         {
-            _HoldItem(_possibleItemHolder.GetItem());
+            _HoldItem(holder.GetItem());
         }
 
         return false;
@@ -133,19 +150,11 @@ public class Character : MonoBehaviour
     {
         if(collision.gameObject.CompareTag("Interactable"))
         {
-            //CHeck if we can interact with an holder
-            ItemHolder holder = collision.GetComponent<ItemHolder>();
-            if(holder)
+            Interactable interactable = collision.GetComponent<Interactable>();
+            if(interactable)
             {
-                _possibleItemHolder = holder;
-                _possibleItemHolder.EnableHighlight();
-            }
-
-            //Check if we can pickup an item
-            Item itm = collision.GetComponent<Item>();
-            if (itm)
-            {
-                _possibleItemToSelect = itm;
+                _possibleInteractable = interactable;
+                _possibleInteractable.EnableHighlight();
             }
         }
         _obstacleCount++;
@@ -153,14 +162,9 @@ public class Character : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(_possibleItemToSelect != null && other.gameObject == _possibleItemToSelect.gameObject)
+        if(_possibleInteractable != null && other.gameObject == _possibleInteractable.gameObject)
         {
-            _possibleItemToSelect = null;
-        }
-        else if(_possibleItemHolder != null && other.gameObject == _possibleItemHolder.gameObject)
-        {
-            _possibleItemHolder.DisableHighlight();
-            _possibleItemHolder = null;
+            _possibleInteractable = null;
         }
         _obstacleCount--;
     }

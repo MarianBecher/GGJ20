@@ -4,7 +4,7 @@ using UnityEngine;
 using System;
 using UnityEngine.UI;
 
-public class Item : MonoBehaviour
+public class Item : Interactable
 {
     [SerializeField] private ItemType type;
     [SerializeField] private float timeToDecay = 10.0f;
@@ -28,8 +28,9 @@ public class Item : MonoBehaviour
     public bool IsPickedUp { get => isPickedUp; }
     public ItemType Type { get => type; }
 
-    private void Awake()
+    protected override void Awake()
     {
+        base.Awake();
         Array values = Enum.GetValues(typeof(ItemType));
         type = (ItemType)values.GetValue(new System.Random().Next(values.Length));
         sprite.GetComponent<SpriteRenderer>().sprite = sprites[Math.Min((int)type, sprites.Length - 1)];
