@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-[RequireComponent(typeof(Rigidbody2D))]
+[RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Character : MonoBehaviour
 {
     [Header("Settings")]
@@ -15,19 +15,25 @@ public class Character : MonoBehaviour
     [SerializeField]
     private Transform _itemContainer;
     private Rigidbody2D _rigid;
+    private Animator _animator;
 
     void Awake()
     {
         _rigid = GetComponent<Rigidbody2D>();
+        _animator = GetComponent<Animator>();
     }
 
+    
     public void Move(Vector2 input)
     {
         if (input.magnitude > 1)
             input.Normalize();
 
+
+        bool moving = true;
         if (input.magnitude < 0.1f)
         {
+            moving = false;
             _rigid.velocity = Vector2.zero;
         }
         else
@@ -42,11 +48,14 @@ public class Character : MonoBehaviour
             }
         }
 
+        _animator.SetBool("Moving", moving);
+        _animator.SetFloat("xMovement", _rigid.velocity.x);
+        _animator.SetFloat("yMovement", _rigid.velocity.y);
     }
 
     public void Interact()
     {
-        Debug.LogError("interact");
+        Debug.Log("interact");
         //Pickup
         //Drop
         //Place
