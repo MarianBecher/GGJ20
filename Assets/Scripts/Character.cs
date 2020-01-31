@@ -5,11 +5,15 @@ using UnityEngine;
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour
 {
+    [Header("Settings")]
+    [SerializeField] 
     private float moveSpeed;
+    
+    private Rigidbody2D _rigid;
 
-    void Start()
+    void Awake()
     {
-        
+        _rigid = GetComponent<Rigidbody2D>();
     }
 
     void Update()
@@ -17,8 +21,11 @@ public class Character : MonoBehaviour
         
     }
 
-    public void _Move()
+    public void Move(Vector2 input)
     {
+        if (input.magnitude > 1)
+            input.Normalize();
 
+        //_rigid.AddForce(input * moveSpeed, ForceMode2D.Impulse);
     }
 }
