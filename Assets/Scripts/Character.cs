@@ -52,20 +52,20 @@ public class Character : MonoBehaviour
                 _rigid.velocity = _rigid.velocity.normalized * maxSpeed;
                 float angle = Mathf.Atan2(_rigid.velocity.y, _rigid.velocity.x) * Mathf.Rad2Deg;
                 _rotatingBody.localRotation = Quaternion.Euler(0,0, angle);
+                _animator.SetFloat("xMovement", _rigid.velocity.x);
+                _animator.SetFloat("yMovement", _rigid.velocity.y);
             }
         }
 
         _animator.SetBool("Moving", moving);
-        _animator.SetFloat("xMovement", _rigid.velocity.x);
-        _animator.SetFloat("yMovement", _rigid.velocity.y);
     }
 
     public void Interact()
     {
         bool actionDone = false;
+        if (!actionDone) { actionDone = _TryInteractWithHolder(); }
         if (!actionDone) { actionDone = _TryPickupItem(); }
         if (!actionDone) { actionDone = _TryDropItem(); }
-        if (!actionDone) { actionDone = _TryInteractWithHolder(); }
         //Pickup
         //Drop
         //Place
