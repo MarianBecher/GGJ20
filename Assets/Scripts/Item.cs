@@ -11,11 +11,15 @@ public class Item : MonoBehaviour
     [SerializeField] private float conveyorSpeed = 3f;
     [SerializeField] private GameObject sprite;
 
+    [Header("Sprite Images")]
+    [SerializeField] private Sprite[] sprites;
+
     [Header("Zum testen")]
     [SerializeField] private float testThreshold = -10f;
 
     private bool isOnConveyor = true;
     private bool isPickedUp = false;
+    private float elapsedTime = 0f;
 
     public bool IsPickedUp { get => isPickedUp; }
     public ItemType Type { get => type; }
@@ -24,6 +28,7 @@ public class Item : MonoBehaviour
     {
         Array values = Enum.GetValues(typeof(ItemType));
         type = (ItemType)values.GetValue(new System.Random().Next(values.Length));
+        sprite.GetComponent<SpriteRenderer>().sprite = sprites[Math.Min((int)type, sprites.Length - 1)];
     }
 
     private void Start()
@@ -45,6 +50,7 @@ public class Item : MonoBehaviour
                 Destroy(gameObject);
             }
         }
+        elapsedTime += Time.deltaTime;
     }
 
     public void Pickup()
@@ -57,20 +63,11 @@ public class Item : MonoBehaviour
         }
     }
 
-    private bool IsOnTable()
-    {
-        // check die position mit der tischposition
-        return false;
-    }
-
     public void Drop()
     {
         if (isPickedUp)
         {
-            if (!IsOnTable())
-            {
-                StartCoroutine(DecayCoroutine(graceTime));
-            }
+            StartCoroutine(DecayCoroutine(graceTime));
             isPickedUp = false;
         }
     }
