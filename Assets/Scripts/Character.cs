@@ -1,14 +1,14 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class Character : MonoBehaviour
 {
     [Header("Settings")]
     [SerializeField] 
-    private float moveSpeed;
-    
+    private float acceleration = 0.5f;
+    [SerializeField]
+    private float maxSpeed = 1;
+
     private Rigidbody2D _rigid;
 
     void Awake()
@@ -26,6 +26,16 @@ public class Character : MonoBehaviour
         if (input.magnitude > 1)
             input.Normalize();
 
-        //_rigid.AddForce(input * moveSpeed, ForceMode2D.Impulse);
+        _rigid.AddForce(input * acceleration, ForceMode2D.Impulse);
+
+        if(_rigid.velocity.sqrMagnitude > maxSpeed * maxSpeed)
+        {
+            _rigid.velocity = _rigid.velocity.normalized * maxSpeed;
+        }
+
+        if(input.magnitude < 0.1f)
+        {
+            _rigid.velocity = Vector2.zero;
+        }
     }
 }
