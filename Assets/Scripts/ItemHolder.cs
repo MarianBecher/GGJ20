@@ -6,6 +6,8 @@ public class ItemHolder : MonoBehaviour
 {
     [SerializeField] private GameObject highlight;
 
+    [SerializeField] private GameObject container;
+
     private Item item;
 
     private void Awake()
@@ -27,12 +29,16 @@ public class ItemHolder : MonoBehaviour
         }
 
         this.item = item;
+        this.item.transform.parent = this.container.transform;
+        this.item.transform.localPosition = new Vector2(0, 0);
 
         return true;
     }
 
     public Item GetItem()
     {
+        this.item.transform.parent = null;
+
         return this.item;
     }
 
