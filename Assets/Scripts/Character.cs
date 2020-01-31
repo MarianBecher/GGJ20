@@ -20,6 +20,7 @@ public class Character : MonoBehaviour
 
     private Item _currentItem;
     private Item _possibleItemToSelect;
+    private ItemHolder _possibleItemHolder;
     private int _obstacleCount = 0;
     private bool FreeSpaceInFront => _obstacleCount == 0;
 
@@ -61,11 +62,10 @@ public class Character : MonoBehaviour
 
     public void Interact()
     {
-        Debug.Log("interact");
-
         bool actionDone = false;
         if (!actionDone) { actionDone = _TryPickupItem(); }
         if (!actionDone) { actionDone = _TryDropItem(); }
+        if (!actionDone) { actionDone = _TryInteractWithHolder(); }
         //Pickup
         //Drop
         //Place
@@ -74,47 +74,78 @@ public class Character : MonoBehaviour
 
     private bool _TryPickupItem()
     {
-        if (!_currentItem && _possibleItemToSelect)
+        if (_currentItem || !_possibleItemToSelect)
+            return false;
+
+        _possibleItemToSelect.Pickup();
+        _HoldItem(_possibleItemToSelect);
+        _possibleItemToSelect = null;
+        return true;
+    }
+
+    private bool _TryDropItem()
+    {
+        if (!_currentItem || !FreeSpaceInFront)
+            return false;
+
+        _currentItem.Drop();
+        _currentItem.transform.SetParent(null);
+        _currentItem = null;
+        return true;
+    }
+
+    private bool _TryInteractWithHolder()
+    {
+        if (!_possibleItemHolder)
+            return false;
+
+        //Put Item
+        if (_currentItem && !_possibleItemHolder.HasItem())
         {
-            _possibleItemToSelect.Pickup();
-            _currentItem = _possibleItemToSelect;
-            _currentItem.transform.SetParent(_itemContainer);
-            _currentItem.transform.localPosition = Vector3.zero;
-            _possibleItemToSelect = null;
-            return true;
+            if(_possibleItemHolder.PutItem(_currentItem))
+            {
+                _currentItem = null;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Get Item
+        if (!_currentItem && _possibleItemHolder.HasItem())
+        {
+            _HoldItem(_possibleItemHolder.GetItem());
         }
 
         return false;
     }
 
-    private bool _TryDropItem()
+    private void _HoldItem(Item itm)
     {
-        if (_currentItem && FreeSpaceInFront)
-        {
-            _currentItem.Drop();
-            _currentItem.transform.SetParent(null);
-            _currentItem = null;
-            return true;
-        }
-
-        return false;
+        _currentItem = itm;
+        _currentItem.transform.SetParent(_itemContainer);
+        _currentItem.transform.localPosition = Vector3.zero;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.gameObject.CompareTag("Interactable"))
         {
-            if(_currentItem)
+            //CHeck if we can interact with an holder
+            ItemHolder holder = collision.GetComponent<ItemHolder>();
+            if(holder)
             {
+                _possibleItemHolder = holder;
+                _possibleItemHolder.EnableHighlight();
             }
-            else
+
+            //Check if we can pickup an item
+            Item itm = collision.GetComponent<Item>();
+            if (itm)
             {
-                //Check if we can pickup an item
-                Item itm = collision.GetComponent<Item>();
-                if (itm != null)
-                {
-                    _possibleItemToSelect = itm;
-                }
+                _possibleItemToSelect = itm;
             }
         }
         _obstacleCount++;
@@ -125,6 +156,11 @@ public class Character : MonoBehaviour
         if(_possibleItemToSelect != null && other.gameObject == _possibleItemToSelect.gameObject)
         {
             _possibleItemToSelect = null;
+        }
+        else if(_possibleItemHolder != null && other.gameObject == _possibleItemHolder.gameObject)
+        {
+            _possibleItemHolder.DisableHighlight();
+            _possibleItemHolder = null;
         }
         _obstacleCount--;
     }

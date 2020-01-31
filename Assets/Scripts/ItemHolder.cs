@@ -15,7 +15,7 @@ public class ItemHolder : MonoBehaviour
         this.highlight.SetActive(false);
     }
 
-    private bool HasItem()
+    public bool HasItem()
     {
         return this.item;
     }
