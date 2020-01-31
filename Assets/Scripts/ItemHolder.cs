@@ -4,7 +4,14 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
+    [SerializeField] private GameObject highlight;
+
     private Item item;
+
+    private void Awake()
+    {
+        this.highlight.SetActive(false);
+    }
 
     private bool HasItem()
     {
@@ -27,5 +34,15 @@ public class ItemHolder : MonoBehaviour
     public Item GetItem()
     {
         return this.item;
+    }
+
+    public void EnableHighlight()
+    {
+        this.highlight.SetActive(true);
+    }
+
+    public void DisableHighlight()
+    {
+        this.highlight.SetActive(false);
     }
 }
