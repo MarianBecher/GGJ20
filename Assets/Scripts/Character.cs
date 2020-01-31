@@ -12,6 +12,8 @@ public class Character : MonoBehaviour
     [Header("Components")]
     [SerializeField]
     private Transform _rotatingBody;
+    [SerializeField]
+    private Transform _itemContainer;
     private Rigidbody2D _rigid;
 
     void Awake()
@@ -40,5 +42,14 @@ public class Character : MonoBehaviour
             }
         }
 
+    }
+
+    public void Interact()
+    {
+        Debug.LogError("interact");
+        //Pickup
+        //Drop
+        //Place
+        //Build
     }
 }
