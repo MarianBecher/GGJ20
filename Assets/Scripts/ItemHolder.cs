@@ -4,10 +4,28 @@ using UnityEngine;
 
 public class ItemHolder : MonoBehaviour
 {
-    private GameObject item;
+    private Item item;
 
-    private bool ContainsItem()
+    private bool HasItem()
     {
-        return item;
+        return this.item;
+    }
+
+
+    public bool PutItem(Item item)
+    {
+        if(this.item)
+        {
+            return false;
+        }
+
+        this.item = item;
+
+        return true;
+    }
+
+    public Item GetItem()
+    {
+        return this.item;
     }
 }
