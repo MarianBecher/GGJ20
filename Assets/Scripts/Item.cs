@@ -11,6 +11,7 @@ public class Item : MonoBehaviour
     [SerializeField] private float graceTime = 2f;
     [SerializeField] private float conveyorSpeed = 3f;
     [SerializeField] private GameObject sprite;
+    [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject decayBar;
 
     [Header("Sprite Images")]
@@ -60,11 +61,16 @@ public class Item : MonoBehaviour
         decayBarImage.color = new Vector4(percentage, 1 - percentage, 0, 1);
     }
 
+    private void LateUpdate()
+    {
+        canvas.transform.rotation = Quaternion.identity;
+    }
+
     public void Pickup()
     {
         if (!isPickedUp)
         {
-            StopCoroutine("DecayCoroutine");
+            StopAllCoroutines();
             isOnConveyor = false;
             isPickedUp = true;
         }
