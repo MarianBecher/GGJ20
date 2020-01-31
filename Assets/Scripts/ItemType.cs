@@ -1,4 +1,5 @@
-﻿public enum ItemType
+﻿[System.Serializable]
+public enum ItemType
 {
     Head = 0,
     LeftArm = 1,
