@@ -19,8 +19,8 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private GameObject rightCompletionDisplay;
     [SerializeField] private GameObject scoreScreenDisplay;
     [SerializeField] private GameObject victoryDisplay;
+    [SerializeField] private GameObject fightDisplay;
     [SerializeField] private Image mobProgressDisplay;
-    [SerializeField] private Image monsterStrengthDisplay;
     [SerializeField] private WorkingBench leftBench;
     [SerializeField] private WorkingBench rightBench;
 
@@ -77,10 +77,10 @@ public class GameGlobals : MonoBehaviour
         rightTimer += Time.deltaTime;
         monsterStrength -= Time.deltaTime;
         mobProgress += Time.deltaTime;
+        fightDisplay.transform.localPosition = new Vector3((mobProgress - (maxMobProgress / 2)) * -2, 0, 0);
 
         //Update all displays
         mobProgressDisplay.fillAmount = mobProgress / maxMobProgress;
-        monsterStrengthDisplay.fillAmount = monsterStrength / maxMobProgress;
 
         scoreScreenDisplay.SetActive(GameOver());
         if (scoreScreenDisplay.active)
