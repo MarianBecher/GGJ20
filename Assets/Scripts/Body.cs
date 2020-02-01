@@ -37,6 +37,17 @@ public class Body
         }
     }
 
+    public ItemType[] GetMissingBodyParts()
+    {
+        List<ItemType> missing = new List<ItemType>();
+        for(int i = 0; i < bodyParts.Length; i++)
+        {
+            if (!bodyParts[i])
+                missing.Add((ItemType) i);
+        }
+        return missing.ToArray();
+    }
+
     public bool AddBodypart(ItemType type)
     {
         if (!bodyParts[(int)type])
