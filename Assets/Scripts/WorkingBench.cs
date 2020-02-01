@@ -19,7 +19,7 @@ public class WorkingBench : Interactable
     private Transform _indicatorContainer;
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
     private Body _currentBody;
-    public ItemType[] MissingParts => _currentBody.GetMissingBodyParts();
+    public ItemType[] MissingParts => _currentBody.GetMissingItemTypes();
 
     //QTE
     private Character _interactingCharacter;
@@ -46,7 +46,7 @@ public class WorkingBench : Interactable
         _currentItemType = item.Type;
         Destroy(item.gameObject);
 
-        if(_currentBody.BodyIsComplete())
+        if (_currentBody.BodyIsComplete())
         {
             _interactingCharacter.disableMovement = true;
             _StartQTE();
@@ -73,7 +73,7 @@ public class WorkingBench : Interactable
             return;
 
         bool correct = action == _currentQTE[_currentInputIndex];
-        if(correct)
+        if (correct)
         {
             _NextQTEAction();
         }
@@ -121,7 +121,7 @@ public class WorkingBench : Interactable
         _currentInputIndex++;
         if (_currentInputIndex < _currentQTE.Length)
         {
-            if(_currentInputIndex > 0)
+            if (_currentInputIndex > 0)
                 _indicators[_currentInputIndex - 1].SetDone();
         }
         else
@@ -135,7 +135,7 @@ public class WorkingBench : Interactable
 
     private void _SucessfullyAddedBodyPart(ItemType type)
     {
-        if (_currentBody.BodyIsComplete()) 
+        if (_currentBody.BodyIsComplete())
             _CreateNewBody();
 
         _UpdateUI();
@@ -150,7 +150,7 @@ public class WorkingBench : Interactable
     private void _UpdateUI()
     {
         System.Array values = System.Enum.GetValues(typeof(ItemType));
-        ItemType[] missing = _currentBody.GetMissingBodyParts();
+        ItemType[] missing = _currentBody.GetMissingItemTypes();
         for (int i = 0; i < values.Length; i++)
         {
             ItemType t = (ItemType)values.GetValue(i);
@@ -167,7 +167,7 @@ public class WorkingBench : Interactable
     private int[] _CreateQTE(int length)
     {
         int[] actions = new int[length];
-        for(int i = 0; i < length; i++)
+        for (int i = 0; i < length; i++)
         {
             actions[i] = Random.Range(0, _qteActions.Length);
         }

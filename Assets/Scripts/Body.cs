@@ -62,7 +62,7 @@ public class Body
         return missing.ToArray();
     }
 
-    public BodyTpe[] GetMissingBodyTypes()
+    public BodyType[] GetMissingBodyTypes()
     {
         List<BodyType> missing = new List<BodyType>();
         for (int i = 0; i < bodyParts.Length; i++)
