@@ -10,6 +10,8 @@ public class Character : MonoBehaviour
     [SerializeField]
     private float maxSpeed = 1;
     public bool disableMovement = false;
+    [SerializeField]
+    float _bloodDropInterval = 1.0f;
 
     [Header("Components")]
     [SerializeField]
@@ -18,6 +20,11 @@ public class Character : MonoBehaviour
     private Transform _itemContainer;
     private Rigidbody2D _rigid;
     private Animator _animator;
+    
+    [Header("Refernces")]
+    [SerializeField]
+    private Bloodstain _bloodPrefab;
+    private float _lastBloodTroped = float.NegativeInfinity;
 
 
     private Item _currentItem;
@@ -31,7 +38,19 @@ public class Character : MonoBehaviour
         _animator = GetComponent<Animator>();
     }
 
-    
+    private void Update()
+    {
+        if(_currentItem && Time.time - _lastBloodTroped > _bloodDropInterval && FreeSpaceInFront)
+        {
+            Bloodstain blood = Instantiate(_bloodPrefab);
+            Vector3 pos = blood.transform.position;
+            pos.x = _currentItem.transform.position.x;
+            pos.y = _currentItem.transform.position.y;
+            blood.transform.position = pos;
+            _lastBloodTroped = Time.time;
+        }
+    }
+
     public void Move(Vector2 input)
     {
         if (input.magnitude > 1)

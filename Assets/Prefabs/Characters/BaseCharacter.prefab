@@ -342,7 +342,7 @@ GameObject:
   - component: {fileID: 283676041696800453}
   - component: {fileID: 1138605078}
   m_Layer: 0
-  m_Name: Character
+  m_Name: BaseCharacter
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -379,8 +379,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   acceleration: 60
   maxSpeed: 4
+  disableMovement: 0
+  _bloodDropInterval: 0.3
   _rotatingBody: {fileID: 1273740283}
   _itemContainer: {fileID: 5590455154924677179}
+  _bloodPrefab: {fileID: 657037152647327349, guid: b4df59580ffedf947821a8413ca7d994,
+    type: 3}
 --- !u!50 &283676041696800453
 Rigidbody2D:
   serializedVersion: 4
