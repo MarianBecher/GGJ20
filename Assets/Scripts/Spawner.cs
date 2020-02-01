@@ -53,12 +53,12 @@ public class Spawner : MonoBehaviour
         if(cheat && preferedBench)
         {
             ItemType[] missingParts = preferedBench.MissingParts;
-            return missingParts[Random.Range(0, missingParts.Length)];
+            return missingParts[Random.Range(0, missingParts.Length - 1)];
         }
         else
         {
             System.Array values = System.Enum.GetValues(typeof(ItemType));
-            return (ItemType)values.GetValue(Random.Range(0, values.Length));
+            return (ItemType)values.GetValue(Random.Range(0, values.Length - 1));
         }
 
     }
