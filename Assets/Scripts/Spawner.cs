@@ -49,10 +49,10 @@ public class Spawner : MonoBehaviour
     private ItemType _GetRandomItemType()
     {
         bool cheat = Random.value < cheatFactor;
-        
-        if(cheat && preferedBench)
+        ItemType[] missingParts = preferedBench.MissingParts;
+
+        if (cheat && preferedBench && missingParts.Length > 0)
         {
-            ItemType[] missingParts = preferedBench.MissingParts;
             return missingParts[Random.Range(0, missingParts.Length - 1)];
         }
         else

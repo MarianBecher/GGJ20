@@ -12,10 +12,30 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 22100000, guid: 401bc543d25068a4d81944d1e4f98a4b,
         type: 2}
+    - target: {fileID: 424683013249720854, guid: f797ffdd0465fa541bb81ecc0850658e,
+        type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 424683013249720854, guid: f797ffdd0465fa541bb81ecc0850658e,
+        type: 3}
+      propertyPath: m_Size.x
+      value: 5.12
+      objectReference: {fileID: 0}
+    - target: {fileID: 424683013249720854, guid: f797ffdd0465fa541bb81ecc0850658e,
+        type: 3}
+      propertyPath: m_Size.y
+      value: 5.12
+      objectReference: {fileID: 0}
     - target: {fileID: 6475128991083064141, guid: f797ffdd0465fa541bb81ecc0850658e,
         type: 3}
       propertyPath: m_Name
       value: Gregor
+      objectReference: {fileID: 0}
+    - target: {fileID: 7157636130897373263, guid: f797ffdd0465fa541bb81ecc0850658e,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8508141463296974026, guid: f797ffdd0465fa541bb81ecc0850658e,
         type: 3}
