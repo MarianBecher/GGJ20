@@ -1,19 +1,26 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class GameGlobals : MonoBehaviour
 {
+    [Header("Balancing")]
     [SerializeField] private float bonusTimeThreshold = 60;
     [SerializeField] private int pointsPerCompletion = 500;
+    [SerializeField] private int maxMobProgress = 300;
+    [SerializeField] private int monsterStrengthAddition = 60;
 
+    [Header("Referenzen")]
     [SerializeField] private GameObject pointDisplay;
     [SerializeField] private GameObject timerDisplay;
     [SerializeField] private GameObject leftCompletionDisplay;
     [SerializeField] private GameObject leftTimerDisplay;
     [SerializeField] private GameObject rightCompletionDisplay;
     [SerializeField] private GameObject rightTimerDisplay;
+    [SerializeField] private Image mobProgressDisplay;
+    [SerializeField] private Image monsterStrengthDisplay;
     [SerializeField] private WorkingBench leftBench;
     [SerializeField] private WorkingBench rightBench;
 
@@ -23,6 +30,8 @@ public class GameGlobals : MonoBehaviour
     private int rightCompletions = 0;
     private float rightTimer = 0;
     private float elapsedTime = 0;
+    private float mobProgress = 150;
+    private float monsterStrength = 150;
 
     private TextMeshProUGUI timerDisplayTextElement;
     private TextMeshProUGUI pointDisplayTextElement;
@@ -68,6 +77,8 @@ public class GameGlobals : MonoBehaviour
         elapsedTime += Time.deltaTime;
         leftTimer += Time.deltaTime;
         rightTimer += Time.deltaTime;
+        monsterStrength -= Time.deltaTime;
+        mobProgress += Time.deltaTime;
 
         //Update all displays
         timerDisplayTextElement.text = string.Format("{0:0.0}", elapsedTime);
@@ -76,6 +87,8 @@ public class GameGlobals : MonoBehaviour
         rightTimerDisplayTextElement.text = string.Format("{0:0.0}", rightTimer);
         leftCountDisplayTextElement.text = leftCompletions.ToString();
         rightCountDisplayTextElement.text = rightCompletions.ToString();
+        mobProgressDisplay.fillAmount = mobProgress / maxMobProgress;
+        monsterStrengthDisplay.fillAmount = monsterStrength / maxMobProgress;
     }
 
     public void CompleteRight()
@@ -83,6 +96,8 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - rightTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         rightTimer = 0;
         rightCompletions++;
+        monsterStrength += monsterStrengthAddition;
+        mobProgress -= monsterStrengthAddition;
     }
 
     public void CompleteLeft()
@@ -90,5 +105,7 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - leftTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         leftTimer = 0;
         leftCompletions++;
+        monsterStrength += monsterStrengthAddition;
+        mobProgress -= monsterStrengthAddition;
     }
 }
