@@ -25,6 +25,8 @@ public class Item : Interactable
     private bool isPickedUp = false;
     private float elapsedTime = 0f;
     private Image decayBarImage;
+    private bool isFrozen = false;
+    private float decayTimeElapsed = 0.0f;
 
     public bool IsPickedUp { get => isPickedUp; }
     public ItemType Type { get => type; }
@@ -38,13 +40,18 @@ public class Item : Interactable
         decayBarImage = decayBar.GetComponent<Image>();
     }
 
-    private void Start()
-    {
-        Destroy(gameObject, timeToDecay);
-    }
-
     private void Update()
     {
+        if(!isFrozen)
+        {
+            decayTimeElapsed += Time.deltaTime;
+
+            if(decayTimeElapsed >= timeToDecay)
+            {
+                Destroy(gameObject);
+            }
+        }
+
         if (isOnConveyor)
         {
             Vector3 pos = transform.position;
@@ -85,6 +92,7 @@ public class Item : Interactable
             isOnConveyor = false;
             isPickedUp = true;
             collider.enabled = false;
+            isFrozen = false;
         }
     }
 
@@ -112,5 +120,10 @@ public class Item : Interactable
     public void SetMoveToRight()
     {
         conveyorMovesLeft = false;
+    }
+
+    public void Freeze()
+    {
+        isFrozen = true;
     }
 }
