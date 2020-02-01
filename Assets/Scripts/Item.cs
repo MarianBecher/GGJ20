@@ -76,12 +76,12 @@ public class Item : Interactable
             }
             transform.position = pos;
 
-            // Debug
             if (
                 (conveyorMovesLeft && transform.position.x <= shredderThreshold)
                 || (!conveyorMovesLeft && transform.position.x >= shredderThreshold)
             )
             {
+                AudioManager.Instance.Play("Shredder");
                 Destroy(gameObject);
             }
         }
@@ -111,10 +111,10 @@ public class Item : Interactable
     {
         if (isPickedUp)
         {
+            AudioManager.Instance.Play("Drop");
             isPickedUp = false;
             collider.enabled = true;
         }
-        AudioManager.Instance.Play("Drop");
     }
 
     public void SetMoveToLeft()
