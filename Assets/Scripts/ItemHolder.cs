@@ -24,7 +24,7 @@ public class ItemHolder : Interactable
         }
 
         this.item = item;
-        this.item.transform.parent = this.container.transform;
+        this.item.transform.SetParent(this.container.transform, true);
         this.item.transform.localPosition = new Vector2(0, 0);
 
         if(this.freezesItem)

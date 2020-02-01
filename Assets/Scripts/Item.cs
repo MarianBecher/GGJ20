@@ -80,6 +80,7 @@ public class Item : Interactable
             {
                 GetComponent<Animator>().SetTrigger("Shredder");
                 AudioManager.Instance.Play("Shredder");
+                collider.enabled = false;
                 StartCoroutine(DelayedDestroy(1.0f));
             }
         }

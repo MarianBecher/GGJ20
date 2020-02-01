@@ -10,12 +10,12 @@ PrefabInstance:
     - target: {fileID: 657716655236933671, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -8.4
+      value: -9.5
       objectReference: {fileID: 0}
     - target: {fileID: 657716655236933671, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1
+      value: -4
       objectReference: {fileID: 0}
     - target: {fileID: 657716655236933671, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
@@ -65,12 +65,12 @@ PrefabInstance:
     - target: {fileID: 657716655236933671, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 2.175
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 657716655236933671, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 2.175
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2341077408182418482, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
@@ -80,7 +80,7 @@ PrefabInstance:
     - target: {fileID: 2676654276882292007, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_Name
-      value: Freezer
+      value: Freezer_Left
       objectReference: {fileID: 0}
     - target: {fileID: 4545357482866314552, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
