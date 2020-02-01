@@ -100,8 +100,13 @@ public class Item : Interactable
         Destroy(gameObject);
     }
 
-    public void SetConveyorMovementDirection(string direction)
+    public void SetMoveToLeft()
     {
-        conveyorMovesLeft = (direction == "left");
+        conveyorMovesLeft = true;
+    }
+
+    public void SetMoveToRight()
+    {
+        conveyorMovesLeft = false;
     }
 }
