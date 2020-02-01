@@ -14,6 +14,8 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private GameObject leftTimerDisplay;
     [SerializeField] private GameObject rightCompletionDisplay;
     [SerializeField] private GameObject rightTimerDisplay;
+    [SerializeField] private WorkingBench leftBench;
+    [SerializeField] private WorkingBench rightBench;
 
     private int points = 0;
     private int leftCompletions = 0;
@@ -44,6 +46,20 @@ public class GameGlobals : MonoBehaviour
         leftCountDisplayTextElement = leftCompletionDisplay.GetComponent<TextMeshProUGUI>();
         rightTimerDisplayTextElement = rightTimerDisplay.GetComponent<TextMeshProUGUI>();
         rightCountDisplayTextElement = rightCompletionDisplay.GetComponent<TextMeshProUGUI>();
+    }
+
+    void OnEnable()
+    {
+
+        leftBench.OnBodyCompleted += CompleteLeft;
+        rightBench.OnBodyCompleted += CompleteRight;
+    }
+
+    void OnDisable()
+    {
+
+        leftBench.OnBodyCompleted -= CompleteLeft;
+        rightBench.OnBodyCompleted -= CompleteRight;
     }
 
     // Update is called once per frame

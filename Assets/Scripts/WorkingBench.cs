@@ -2,6 +2,7 @@
 using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
+using System;
 
 public class WorkingBench : Interactable
 {
@@ -20,6 +21,8 @@ public class WorkingBench : Interactable
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
     private Body _currentBody;
     public ItemType[] MissingParts => _currentBody.GetMissingItemTypes();
+
+    public event Action OnBodyCompleted;
 
     //QTE
     private Character _interactingCharacter;
@@ -136,7 +139,10 @@ public class WorkingBench : Interactable
     private void _SucessfullyAddedBodyPart(ItemType type)
     {
         if (_currentBody.BodyIsComplete())
+        {
+            OnBodyCompleted?.Invoke();
             _CreateNewBody();
+        }
 
         _UpdateUI();
     }
@@ -169,7 +175,7 @@ public class WorkingBench : Interactable
         int[] actions = new int[length];
         for (int i = 0; i < length; i++)
         {
-            actions[i] = Random.Range(0, _qteActions.Length);
+            actions[i] = UnityEngine.Random.Range(0, _qteActions.Length);
         }
         return actions;
     }
