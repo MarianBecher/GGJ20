@@ -23,7 +23,6 @@ public class Item : Interactable
 
     private bool isOnConveyor = true;
     private bool isPickedUp = false;
-    private float elapsedTime = 0f;
     private Image decayBarImage;
     private bool isFrozen = false;
     private float decayTimeElapsed = 0.0f;
@@ -79,8 +78,7 @@ public class Item : Interactable
                 Destroy(gameObject);
             }
         }
-        elapsedTime += Time.deltaTime;
-        float percentage = elapsedTime / timeToDecay;
+        float percentage = decayTimeElapsed / timeToDecay;
         decayBarImage.fillAmount = 1 - percentage;
         decayBarImage.color = new Vector4(percentage, 1 - percentage, 0, 1);
     }
@@ -98,7 +96,7 @@ public class Item : Interactable
             isOnConveyor = false;
             isPickedUp = true;
             collider.enabled = false;
-            isFrozen = false;
+            Unfreeze();
         }
     }
 
@@ -131,5 +129,10 @@ public class Item : Interactable
     public void Freeze()
     {
         isFrozen = true;
+    }
+
+    public void Unfreeze()
+    {
+        isFrozen = false;
     }
 }
