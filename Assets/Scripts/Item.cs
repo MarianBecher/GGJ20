@@ -10,6 +10,7 @@ public class Item : Interactable
     [SerializeField] private float timeToDecay = 10.0f;
     [SerializeField] private float graceTime = 2f;
     [SerializeField] private float conveyorSpeed = 3f;
+    [SerializeField] private bool conveyorMovesLeft = true;
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject decayBar;
@@ -47,7 +48,14 @@ public class Item : Interactable
         if (isOnConveyor)
         {
             Vector3 pos = transform.position;
-            pos.x -= conveyorSpeed * Time.deltaTime;
+            if(conveyorMovesLeft)
+            {
+                pos.x -= conveyorSpeed * Time.deltaTime;
+            }
+            else
+            {
+                pos.x += conveyorSpeed * Time.deltaTime;
+            }
             transform.position = pos;
 
             // Debug
@@ -90,5 +98,10 @@ public class Item : Interactable
     {
         yield return new WaitForSeconds(time);
         Destroy(gameObject);
+    }
+
+    public void SetConveyorMovementDirection(string direction)
+    {
+        conveyorMovesLeft = (direction == "left");
     }
 }

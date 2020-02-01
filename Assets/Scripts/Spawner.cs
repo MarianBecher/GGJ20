@@ -6,6 +6,7 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private float spawnDelay = 3f;
     [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private bool movesLeft = true;
 
     private float elapsedTime = 0f;
 
@@ -16,7 +17,15 @@ public class Spawner : MonoBehaviour
         if (elapsedTime >= spawnDelay)
         {
             elapsedTime = 0;
-            GameObject.Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            GameObject item = GameObject.Instantiate(itemPrefab, transform.position, Quaternion.identity);
+            if(movesLeft)
+            {
+                item.GetComponent<Item>().SetMoveToLeft();
+            }
+            else
+            {
+                item.GetComponent<Item>().SetMoveToRight();
+            }
         }
     }
 }
