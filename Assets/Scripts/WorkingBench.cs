@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Linq;
 using UnityEngine.UI;
 using System;
+using UberAudio;
 
 public class WorkingBench : Interactable
 {
@@ -133,6 +134,7 @@ public class WorkingBench : Interactable
             _indicatorContainer.gameObject.SetActive(false);
             _interactingCharacter.disableMovement = false;
             OnBodyCompleted?.Invoke();
+            AudioManager.Instance.Play("MonsterAlive");
             _CreateNewBody();
         }
     }
