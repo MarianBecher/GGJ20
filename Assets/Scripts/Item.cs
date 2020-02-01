@@ -59,11 +59,10 @@ public class Item : Interactable
             transform.position = pos;
 
             // Debug
-            if (conveyorMovesLeft && transform.position.x <= shredderThreshold)
-            {
-                Destroy(gameObject);
-            } else if (!conveyorMovesLeft && transform.position.x >= shredderThreshold)
-            {
+            if (
+                (conveyorMovesLeft && transform.position.x <= shredderThreshold)
+                || (!conveyorMovesLeft && transform.position.x >= shredderThreshold)
+            ) {
                 Destroy(gameObject);
             }
         }
