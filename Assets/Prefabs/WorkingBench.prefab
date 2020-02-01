@@ -73,7 +73,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   highlight: {fileID: 0}
-  _qteActions: []
+  _qteActions:
+  - {fileID: 21300000, guid: 8bb3a4bc8b6402440a28c795d79cee9c, type: 3}
+  - {fileID: 21300000, guid: 1b82e7d4676480c44bcca6a4209fcfe7, type: 3}
+  - {fileID: 21300000, guid: 586f4962c04025745af6477e0dec173f, type: 3}
+  - {fileID: 21300000, guid: d7b551a3659592e41b4fd306ac68da34, type: 3}
   _qteLength: 4
   _timePerQTE: 1
   _qteIndicator: {fileID: 2563834537219287695}
