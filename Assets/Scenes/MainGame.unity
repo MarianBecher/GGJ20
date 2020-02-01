@@ -1163,6 +1163,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Freezer_Right
       objectReference: {fileID: 0}
+    - target: {fileID: 5595850343535953533, guid: 6a3cb4f528a685942bdc44d3b05f9dc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7038487466972377981, guid: 6a3cb4f528a685942bdc44d3b05f9dc5,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2016,7 +2021,9 @@ MonoBehaviour:
   bonusTimeThreshold: 60
   pointsPerCompletion: 500
   maxMobProgress: 300
-  monsterStrengthAddition: 60
+  monsterStrengthAddition: 90
+  mobScalingFactor: 4
+  timePenalty: 5
   pointDisplay: {fileID: 2094661919}
   timerDisplay: {fileID: 792917023}
   leftCompletionDisplay: {fileID: 610634905}
@@ -2732,6 +2739,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Freezer_Left
+      objectReference: {fileID: 0}
+    - target: {fileID: 5595850343535953533, guid: 6a3cb4f528a685942bdc44d3b05f9dc5,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7038487466972377981, guid: 6a3cb4f528a685942bdc44d3b05f9dc5,
         type: 3}
