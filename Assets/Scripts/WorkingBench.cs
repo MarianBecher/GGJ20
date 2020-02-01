@@ -48,7 +48,6 @@ public class WorkingBench : Interactable
         bool correct = action == _currentQTE[_currentInputIndex];
         if(correct)
         {
-            Debug.Log(".");
             _NextQTEAction();
         }
         else
