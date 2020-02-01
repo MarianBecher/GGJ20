@@ -164,6 +164,7 @@ public class Character : MonoBehaviour
         if (!_currentItem && holder.HasItem())
         {
             _HoldItem(holder.GetItem());
+            return true;
         }
 
         return false;
