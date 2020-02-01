@@ -21,6 +21,7 @@ public class WorkingBench : Interactable
     private Text _debugText;
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
     private Body _currentBody;
+    public ItemType[] MissingParts => _currentBody.GetMissingBodyParts();
 
     //QTE
     private Character _interactingCharacter;
