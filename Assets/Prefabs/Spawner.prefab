@@ -46,3 +46,4 @@ MonoBehaviour:
   spawnDelay: 1.5
   itemPrefab: {fileID: 2681143265602137066, guid: 084a28b8cb1c1074d8f20fbaf5cb4992,
     type: 3}
+  movesLeft: 0
