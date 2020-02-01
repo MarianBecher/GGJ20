@@ -2,9 +2,9 @@
 public enum ItemType
 {
     Head,
+    Torso,
     Arm,
     Hand,
-    Torso,
     Leg,
     Foot
 }
