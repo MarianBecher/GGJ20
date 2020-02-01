@@ -55,6 +55,7 @@ MonoBehaviour:
   sprite: {fileID: 2681143266266683127}
   canvas: {fileID: 2681143265661415592}
   decayBar: {fileID: 2681143266089353699}
+  collider: {fileID: 1225769908681889138}
   sprites:
   - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}

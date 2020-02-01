@@ -14,6 +14,7 @@ public class Item : Interactable
     [SerializeField] private GameObject sprite;
     [SerializeField] private GameObject canvas;
     [SerializeField] private GameObject decayBar;
+    [SerializeField] private Collider2D collider;
 
     [Header("Sprite Images")]
     [SerializeField] private Sprite[] sprites;
@@ -82,6 +83,7 @@ public class Item : Interactable
             StopAllCoroutines();
             isOnConveyor = false;
             isPickedUp = true;
+            collider.enabled = false;
         }
     }
 
@@ -91,6 +93,7 @@ public class Item : Interactable
         {
             StartCoroutine(DecayCoroutine(graceTime));
             isPickedUp = false;
+            collider.enabled = true;
         }
     }
 
