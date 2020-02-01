@@ -377,8 +377,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5deb88dd7fa721478949b94417a7613, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  acceleration: 60
-  maxSpeed: 4
+  acceleration: 70
+  maxSpeed: 8
   disableMovement: 0
   _bloodDropInterval: 0.3
   _rotatingBody: {fileID: 1273740283}

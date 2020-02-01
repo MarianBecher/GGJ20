@@ -56,11 +56,8 @@ public class WorkingBench : Interactable
             _interactingCharacter.disableMovement = true;
             _StartQTE();
         }
-        else
-        {
-            _SucessfullyAddedBodyPart(_currentItemType);
-        }
 
+        _UpdateUI();
 
         return true;
     }
@@ -134,19 +131,9 @@ public class WorkingBench : Interactable
             _isInQTE = false;
             _indicatorContainer.gameObject.SetActive(false);
             _interactingCharacter.disableMovement = false;
-            _SucessfullyAddedBodyPart(_currentItemType);
-        }
-    }
-
-    private void _SucessfullyAddedBodyPart(ItemType type)
-    {
-        if (_currentBody.BodyIsComplete())
-        {
             OnBodyCompleted?.Invoke();
             _CreateNewBody();
         }
-
-        _UpdateUI();
     }
 
     private void _CreateNewBody()
