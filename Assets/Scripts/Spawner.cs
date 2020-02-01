@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using TMPro;
 
 public class Spawner : MonoBehaviour
 {
@@ -6,6 +7,7 @@ public class Spawner : MonoBehaviour
     [SerializeField] private Item itemPrefab;
     [SerializeField] private bool movesLeft = true;
     [SerializeField] private WorkingBench preferedBench;
+    [SerializeField] private float cheatFactor = 0.5f;
 
     private float spawnDelay;
     private float elapsedTime = 0f;
@@ -46,7 +48,7 @@ public class Spawner : MonoBehaviour
 
     private ItemType _GetRandomItemType()
     {
-        bool cheat = Random.value < 0.5f;
+        bool cheat = Random.value < cheatFactor;
         
         if(cheat && preferedBench)
         {
