@@ -421,16 +421,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 701815667117641494, guid: 3af0ecbbb509c8746907203a96653201,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 701815667183554332, guid: 3af0ecbbb509c8746907203a96653201,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
     - target: {fileID: 701815667265282161, guid: 3af0ecbbb509c8746907203a96653201,
         type: 3}
       propertyPath: m_Name
@@ -490,21 +480,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 701815668253016380, guid: 3af0ecbbb509c8746907203a96653201,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 701815668380438541, guid: 3af0ecbbb509c8746907203a96653201,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
-      objectReference: {fileID: 0}
-    - target: {fileID: 701815668499352075, guid: 3af0ecbbb509c8746907203a96653201,
-        type: 3}
-      propertyPath: m_TagString
-      value: Obstacle
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3af0ecbbb509c8746907203a96653201, type: 3}

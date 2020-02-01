@@ -9,6 +9,7 @@ public class Character : MonoBehaviour
     private float acceleration = 0.5f;
     [SerializeField]
     private float maxSpeed = 1;
+    public bool disableMovement = false;
 
     [Header("Components")]
     [SerializeField]
@@ -38,7 +39,7 @@ public class Character : MonoBehaviour
 
 
         bool moving = true;
-        if (input.magnitude < 0.1f)
+        if (disableMovement || input.magnitude < 0.1f)
         {
             moving = false;
             _rigid.velocity = Vector2.zero;
@@ -73,6 +74,18 @@ public class Character : MonoBehaviour
         //Build
     }
 
+    public void SubmitQTEAction(int btnIdx)
+    {
+        if (!_possibleInteractable || !(_possibleInteractable is WorkingBench))
+            return;
+
+        WorkingBench bench = _possibleInteractable as WorkingBench;
+        if(bench.InQTE)
+        {
+            bench.SubmitQTE(btnIdx);
+        }
+    }
+
     private bool _TryPickupItem()
     {
         if (_currentItem || !_possibleInteractable || !(_possibleInteractable is Item))
@@ -102,7 +115,7 @@ public class Character : MonoBehaviour
             return false;
 
         WorkingBench bench = _possibleInteractable as WorkingBench; 
-        if(bench.Interact(_currentItem))
+        if(bench.Interact(_currentItem, this))
         {
             _currentItem = null;
         }
