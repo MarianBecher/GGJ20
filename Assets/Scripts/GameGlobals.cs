@@ -80,14 +80,14 @@ public class GameGlobals : MonoBehaviour
 
     public void CompleteRight()
     {
-        points += pointsPerCompletion + Mathf.RoundToInt((rightTimer / bonusTimeThreshold) * pointsPerCompletion);
+        points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - rightTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         rightTimer = 0;
         rightCompletions++;
     }
 
     public void CompleteLeft()
     {
-        points += pointsPerCompletion + Mathf.RoundToInt((leftTimer / bonusTimeThreshold) * pointsPerCompletion);
+        points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - leftTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         leftTimer = 0;
         leftCompletions++;
     }
