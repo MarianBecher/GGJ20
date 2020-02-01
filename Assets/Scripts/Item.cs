@@ -52,11 +52,11 @@ public class Item : Interactable
 
     private void Update()
     {
-        if(!isFrozen)
+        if (!isFrozen)
         {
             decayTimeElapsed += Time.deltaTime;
 
-            if(decayTimeElapsed >= timeToDecay)
+            if (decayTimeElapsed >= timeToDecay)
             {
                 Destroy(gameObject);
             }
@@ -65,7 +65,7 @@ public class Item : Interactable
         if (isOnConveyor)
         {
             Vector3 pos = transform.position;
-            if(conveyorMovesLeft)
+            if (conveyorMovesLeft)
             {
                 pos.x -= conveyorSpeed * Time.deltaTime;
             }
@@ -79,7 +79,8 @@ public class Item : Interactable
             if (
                 (conveyorMovesLeft && transform.position.x <= shredderThreshold)
                 || (!conveyorMovesLeft && transform.position.x >= shredderThreshold)
-            ) {
+            )
+            {
                 Destroy(gameObject);
             }
         }
@@ -97,7 +98,6 @@ public class Item : Interactable
     {
         if (!isPickedUp)
         {
-            StopAllCoroutines();
             isOnConveyor = false;
             isPickedUp = true;
             collider.enabled = false;
@@ -109,16 +109,9 @@ public class Item : Interactable
     {
         if (isPickedUp)
         {
-            StartCoroutine(DecayCoroutine(graceTime));
             isPickedUp = false;
             collider.enabled = true;
         }
-    }
-
-    private IEnumerator DecayCoroutine(float time)
-    {
-        yield return new WaitForSeconds(time);
-        Destroy(gameObject);
     }
 
     public void SetMoveToLeft()
