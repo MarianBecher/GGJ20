@@ -39,8 +39,12 @@ public class ItemHolder : Interactable
     {
         this.item.transform.parent = null;
 
+
         this.item.Unfreeze();
 
-        return this.item;
+        Item itm = this.item;
+        this.item = null;
+        
+        return itm;
     }
 }
