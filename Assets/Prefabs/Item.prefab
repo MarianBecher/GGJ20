@@ -51,6 +51,7 @@ MonoBehaviour:
   timeToDecay: 20
   graceTime: 2
   conveyorSpeed: 3
+  conveyorMovesLeft: 1
   sprite: {fileID: 2681143266266683127}
   canvas: {fileID: 2681143265661415592}
   decayBar: {fileID: 2681143266089353699}
@@ -61,7 +62,7 @@ MonoBehaviour:
   - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
   - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  testThreshold: -10
+  testThreshold: 0
 --- !u!58 &1225769908681889138
 CircleCollider2D:
   m_ObjectHideFlags: 0

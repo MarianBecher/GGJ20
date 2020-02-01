@@ -19,7 +19,7 @@ public class Item : Interactable
     [SerializeField] private Sprite[] sprites;
 
     [Header("Zum testen")]
-    [SerializeField] private float testThreshold = -10f;
+    [SerializeField] private float testThreshold = 0f;
 
     private bool isOnConveyor = true;
     private bool isPickedUp = false;
@@ -59,7 +59,10 @@ public class Item : Interactable
             transform.position = pos;
 
             // Debug
-            if (transform.position.x <= testThreshold)
+            if (conveyorMovesLeft && transform.position.x <= testThreshold)
+            {
+                Destroy(gameObject);
+            } else if (!conveyorMovesLeft && transform.position.x >= testThreshold)
             {
                 Destroy(gameObject);
             }
