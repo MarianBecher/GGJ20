@@ -23,6 +23,7 @@ public class WorkingBench : Interactable
     public ItemType[] MissingParts => _currentBody.GetMissingItemTypes();
 
     public event Action OnBodyCompleted;
+    public event Action OnBodyPartsChanged;
 
     //QTE
     private Character _interactingCharacter;
@@ -48,6 +49,7 @@ public class WorkingBench : Interactable
         _interactingCharacter = c;
         _currentItemType = item.Type;
         Destroy(item.gameObject);
+        OnBodyPartsChanged?.Invoke();
 
         if (_currentBody.BodyIsComplete())
         {
@@ -150,6 +152,7 @@ public class WorkingBench : Interactable
     private void _CreateNewBody()
     {
         _currentBody = new Body(6);
+        OnBodyPartsChanged?.Invoke();
         _UpdateUI();
     }
 

@@ -42,7 +42,12 @@ public class Item : Interactable
     public void SetItemType(ItemType type)
     {
         this.type = type;
-        sprite.GetComponent<SpriteRenderer>().sprite = sprites[Math.Min((int)type, sprites.Length - 1)];
+        sprite.GetComponent<SpriteRenderer>().sprite = GetSprite(type);
+    }
+
+    public Sprite GetSprite(ItemType type)
+    {
+        return sprites[Math.Min((int)type, sprites.Length - 1)];
     }
 
     private void Update()
