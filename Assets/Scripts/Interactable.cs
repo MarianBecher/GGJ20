@@ -2,7 +2,7 @@
 
 public class Interactable : MonoBehaviour
 {
-    [SerializeField] private GameObject highlight;
+    [SerializeField] protected GameObject highlight;
     
     protected virtual void Awake()
     {

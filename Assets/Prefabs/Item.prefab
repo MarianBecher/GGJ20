@@ -1,5 +1,86 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &153273431432199049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 5336029902427130429}
+  - component: {fileID: 4315581707230440308}
+  m_Layer: 0
+  m_Name: Highlight
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &5336029902427130429
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153273431432199049}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -0.1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2681143265602137064}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!212 &4315581707230440308
+SpriteRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 153273431432199049}
+  m_Enabled: 1
+  m_CastShadows: 0
+  m_ReceiveShadows: 0
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_Sprite: {fileID: 21300000, guid: 52323b2e8b7965d4b90150ec97b90b6d, type: 3}
+  m_Color: {r: 1, g: 0.42590088, b: 0, a: 1}
+  m_FlipX: 0
+  m_FlipY: 0
+  m_DrawMode: 0
+  m_Size: {x: 1, y: 1}
+  m_AdaptiveModeThreshold: 0.5
+  m_SpriteTileMode: 0
+  m_WasSpriteAssigned: 1
+  m_MaskInteraction: 0
+  m_SpriteSortPoint: 0
 --- !u!1 &2681143265602137066
 GameObject:
   m_ObjectHideFlags: 0
@@ -31,6 +112,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2681143266266683126}
+  - {fileID: 5336029902427130429}
   - {fileID: 2681143265661415575}
   - {fileID: 724484933977347591}
   m_Father: {fileID: 0}
@@ -48,7 +130,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1ced246fb94a648fad1716e48a3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlight: {fileID: 0}
+  highlight: {fileID: 153273431432199049}
   type: 0
   timeToDecay: 20
   graceTime: 2
@@ -66,6 +148,13 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 47042a8e16302b746a7f19d26dfa5d08, type: 3}
   - {fileID: 21300000, guid: abe717206b0d097479c8b33f45319c83, type: 3}
   - {fileID: 21300000, guid: 843042a24b6716c4eae3d7d9df5fcd52, type: 3}
+  highlights:
+  - {fileID: 21300000, guid: 52323b2e8b7965d4b90150ec97b90b6d, type: 3}
+  - {fileID: 21300000, guid: cba49fb3f8c78f4439680ebc940736a8, type: 3}
+  - {fileID: 21300000, guid: 465390a122e41bd4b9b6f681f76938ee, type: 3}
+  - {fileID: 21300000, guid: c3fc189fd8129e841af9e066f3881d6f, type: 3}
+  - {fileID: 21300000, guid: d07e2589d43dc9f4d9f43b7c81a7f462, type: 3}
+  - {fileID: 21300000, guid: 8ce0951c109b0534c88404c40935016f, type: 3}
 --- !u!58 &1225769908681889138
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -133,7 +222,7 @@ RectTransform:
   m_Children:
   - {fileID: 2681143266089353698}
   m_Father: {fileID: 2681143265602137064}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -284,7 +373,7 @@ GameObject:
   - component: {fileID: 2681143266266683126}
   - component: {fileID: 2681143266266683125}
   m_Layer: 0
-  m_Name: New Sprite
+  m_Name: Sprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -384,7 +473,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2681143265602137064}
-  m_RootOrder: 2
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -90, y: 0, z: 0}
 --- !u!198 &3379985081927136225
 ParticleSystem:

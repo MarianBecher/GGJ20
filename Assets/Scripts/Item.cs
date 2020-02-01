@@ -20,6 +20,7 @@ public class Item : Interactable
 
     [Header("Sprite Images")]
     [SerializeField] private Sprite[] sprites;
+    [SerializeField] private Sprite[] highlights;
 
 
     private bool isOnConveyor = true;
@@ -37,6 +38,7 @@ public class Item : Interactable
         Array values = Enum.GetValues(typeof(ItemType));
         type = (ItemType)values.GetValue(new System.Random().Next(values.Length));
         sprite.GetComponent<SpriteRenderer>().sprite = sprites[Math.Min((int)type, sprites.Length - 1)];
+        highlight.GetComponent<SpriteRenderer>().sprite = highlights[Math.Min((int)type, sprites.Length - 1)];
         decayBarImage = decayBar.GetComponent<Image>();
     }
 
@@ -44,6 +46,7 @@ public class Item : Interactable
     {
         this.type = type;
         sprite.GetComponent<SpriteRenderer>().sprite = GetSprite(type);
+        highlight.GetComponent<SpriteRenderer>().sprite = highlights[Math.Min((int)type, sprites.Length - 1)];
     }
 
     public Sprite GetSprite(ItemType type)
@@ -118,7 +121,6 @@ public class Item : Interactable
         if (isPickedUp)
         {
             AudioManager.Instance.Play("Drop");
-            Debug.LogError("DROP");
             isPickedUp = false;
             collider.enabled = true;
         }
