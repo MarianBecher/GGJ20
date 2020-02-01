@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WorkingBench : Interactable
 {
@@ -16,24 +17,47 @@ public class WorkingBench : Interactable
     private QTEIndicator _indicatorPrefab;
     [SerializeField]
     private Transform _indicatorContainer;
+    [SerializeField]
+    private Text _debugText;
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
+    private Body _currentBody;
 
+    //QTE
     private Character _interactingCharacter;
     private bool _isInQTE = false;
+    private ItemType _currentItemType = ItemType.Head;
     private int[] _currentQTE;
     private int _currentInputIndex = 0;
     public bool InQTE => _isInQTE;
 
+
+    protected override void Awake()
+    {
+        base.Awake();
+        _CreateNewBody();
+    }
 
     public bool Interact(Item item, Character c)
     {
         if (!_IsValidItem(item))
             return false;
 
+
         _interactingCharacter = c;
-        _interactingCharacter.disableMovement = true;
-        _StartQTE();
+        _currentItemType = item.Type;
         Destroy(item.gameObject);
+
+        if(_currentBody.BodyIsComplete())
+        {
+            _interactingCharacter.disableMovement = true;
+            _StartQTE();
+        }
+        else
+        {
+            _SucessfullyAddedBodyPart(_currentItemType);
+        }
+
+
         return true;
     }
 
@@ -106,12 +130,37 @@ public class WorkingBench : Interactable
             _isInQTE = false;
             _indicatorContainer.gameObject.SetActive(false);
             _interactingCharacter.disableMovement = false;
+            _SucessfullyAddedBodyPart(_currentItemType);
         }
+    }
+
+    private void _SucessfullyAddedBodyPart(ItemType type)
+    {
+        if (_currentBody.BodyIsComplete()) 
+            _CreateNewBody();
+
+        _UpdateUI();
+    }
+
+    private void _CreateNewBody()
+    {
+        _currentBody = new Body(6);
+        _UpdateUI();
+    }
+
+    private void _UpdateUI()
+    {
+        List<int> missingParts = new List<int>();
+        foreach(ItemType t in _currentBody.GetMissingBodyParts())
+        {
+            missingParts.Add(((int) t) + 1);
+        }
+        _debugText.text = string.Join("|", missingParts);
     }
 
     private bool _IsValidItem(Item itm)
     {
-        return true; // TODO
+        return _currentBody.AddBodypart(itm.Type);
     }
 
     private int[] _CreateQTE(int length)

@@ -43,7 +43,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 91bb90091b80d7b42b6e4dd81bd047e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spawnDelay: 1.5
+  defaultSpawnDelay: 1.5
   itemPrefab: {fileID: 2681143265602137066, guid: 084a28b8cb1c1074d8f20fbaf5cb4992,
     type: 3}
   movesLeft: 0
