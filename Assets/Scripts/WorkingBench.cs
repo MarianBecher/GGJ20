@@ -149,11 +149,11 @@ public class WorkingBench : Interactable
 
     private void _UpdateUI()
     {
-        System.Array values = System.Enum.GetValues(typeof(ItemType));
-        ItemType[] missing = _currentBody.GetMissingItemTypes();
+        System.Array values = System.Enum.GetValues(typeof(BodyType));
+        BodyType[] missing = _currentBody.GetMissingBodyTypes();
         for (int i = 0; i < values.Length; i++)
         {
-            ItemType t = (ItemType)values.GetValue(i);
+            BodyType t = (BodyType)values.GetValue(i);
             bodyPartSprites[i].gameObject.SetActive(!missing.Contains(t));
 
         }

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Body
 {
     private const int defaultParts = 7;
@@ -89,8 +90,9 @@ public class Body
 
     private bool CheckBothPositions(BodyType type1, BodyType type2)
     {
-        if (!AddSpecificPart(type1)) return AddSpecificPart(type2);
-        return true;
+        bool done = AddSpecificPart(type1);
+        if (!done) done = AddSpecificPart(type2);
+        return done;
     }
 
     private bool AddSpecificPart(BodyType type)
