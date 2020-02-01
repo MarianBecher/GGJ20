@@ -39,6 +39,7 @@ public class WorkingBench : Interactable
     {
         base.Awake();
         _CreateNewBody();
+        _indicatorContainer.gameObject.SetActive(false);
     }
 
     public bool Interact(Item item, Character c)

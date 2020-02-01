@@ -13,12 +13,13 @@ public class QTEIndicator : MonoBehaviour
 
     public void Initialze(Sprite sprite)
     {
+        _img = GetComponent<Image>();
         _img.sprite = sprite;
         _img.color = Color.white;
     }
 
     public void SetDone()
     {
-        _img.color = new Color(1, 1, 1, 0.5f);
+        _img.color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
     }
 }
