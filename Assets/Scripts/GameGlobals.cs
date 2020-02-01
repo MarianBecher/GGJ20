@@ -19,6 +19,7 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private GameObject rightCompletionDisplay;
     [SerializeField] private GameObject scoreScreenDisplay;
     [SerializeField] private GameObject victoryDisplay;
+    [SerializeField] private GameObject defeatDisplay;
     [SerializeField] private GameObject fightDisplay;
     [SerializeField] private Image mobProgressDisplay;
     [SerializeField] private WorkingBench leftBench;
@@ -37,7 +38,6 @@ public class GameGlobals : MonoBehaviour
     private TextMeshProUGUI pointDisplayTextElement;
     private TextMeshProUGUI leftCountDisplayTextElement;
     private TextMeshProUGUI rightCountDisplayTextElement;
-    private TextMeshProUGUI victoryDisplayTextElement;
 
     public int Points { get => points; }
     public int LeftCompletions { get => leftCompletions; }
@@ -52,7 +52,6 @@ public class GameGlobals : MonoBehaviour
         pointDisplayTextElement = pointDisplay.GetComponent<TextMeshProUGUI>();
         leftCountDisplayTextElement = leftCompletionDisplay.GetComponent<TextMeshProUGUI>();
         rightCountDisplayTextElement = rightCompletionDisplay.GetComponent<TextMeshProUGUI>();
-        victoryDisplayTextElement = victoryDisplay.GetComponent<TextMeshProUGUI>();
     }
 
     void OnEnable()
@@ -87,9 +86,10 @@ public class GameGlobals : MonoBehaviour
         {
             timerDisplayTextElement.text = string.Format("Elapsed Time: {0:0.0}", elapsedTime);
             pointDisplayTextElement.text = string.Format("Points: {0}", points);
-            leftCountDisplayTextElement.text = string.Format("Gregor finished {0} monsters.", leftCompletions);
-            rightCountDisplayTextElement.text = string.Format("Frank finished {0} monsters.", rightCompletions);
-            victoryDisplayTextElement.text = monsterStrength >= maxMobProgress ? "Victory!" : "Defeat";
+            leftCountDisplayTextElement.text = string.Format("{0}x", leftCompletions);
+            rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
+            defeatDisplay.SetActive(mobProgress >= maxMobProgress);
+            victoryDisplay.SetActive(monsterStrength >= maxMobProgress);
         }
     }
 
