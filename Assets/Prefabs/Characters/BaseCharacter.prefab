@@ -380,7 +380,7 @@ MonoBehaviour:
   acceleration: 70
   maxSpeed: 8
   disableMovement: 0
-  _bloodDropInterval: 0.3
+  _bloodDropInterval: 0.15
   _rotatingBody: {fileID: 1273740283}
   _itemContainer: {fileID: 5590455154924677179}
   _bloodPrefab: {fileID: 657037152647327349, guid: b4df59580ffedf947821a8413ca7d994,

@@ -21,6 +21,10 @@ public class MisisngPartsUI : MonoBehaviour
     {
         _targetWorkbench.OnBodyPartsChanged -= _UpdateParts;
     }
+    private void Start()
+    {
+        _UpdateParts();
+    }
 
     void _UpdateParts()
     {

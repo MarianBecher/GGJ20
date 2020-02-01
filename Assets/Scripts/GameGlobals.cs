@@ -11,6 +11,8 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private int pointsPerCompletion = 500;
     [SerializeField] private int maxMobProgress = 300;
     [SerializeField] private int monsterStrengthAddition = 60;
+    [SerializeField] private float mobScalingFactor = 2;
+    [SerializeField] private float timePenalty = 5;
 
     [Header("Referenzen")]
     [SerializeField] private GameObject pointDisplay;
@@ -32,7 +34,6 @@ public class GameGlobals : MonoBehaviour
     private float rightTimer = 0;
     private float elapsedTime = 0;
     private float mobProgress = 150;
-    private float monsterStrength = 150;
 
     private TextMeshProUGUI timerDisplayTextElement;
     private TextMeshProUGUI pointDisplayTextElement;
@@ -74,8 +75,7 @@ public class GameGlobals : MonoBehaviour
         elapsedTime += Time.deltaTime;
         leftTimer += Time.deltaTime;
         rightTimer += Time.deltaTime;
-        monsterStrength -= Time.deltaTime;
-        mobProgress += Time.deltaTime;
+        mobProgress += Time.deltaTime * mobScalingFactor; 
         fightDisplay.transform.localPosition = new Vector3((mobProgress - (maxMobProgress / 2)) * -2, 0, 0);
 
         //Update all displays
@@ -85,17 +85,17 @@ public class GameGlobals : MonoBehaviour
         if (scoreScreenDisplay.active)
         {
             timerDisplayTextElement.text = string.Format("Elapsed Time: {0:0.0}", elapsedTime);
-            pointDisplayTextElement.text = string.Format("Points: {0}", points);
+            pointDisplayTextElement.text = string.Format("Points: {0:0.}", points - (elapsedTime * timePenalty));
             leftCountDisplayTextElement.text = string.Format("{0}x", leftCompletions);
             rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
             defeatDisplay.SetActive(mobProgress >= maxMobProgress);
-            victoryDisplay.SetActive(monsterStrength >= maxMobProgress);
+            victoryDisplay.SetActive(mobProgress <= 0);
         }
     }
 
     private bool GameOver()
     {
-        if (monsterStrength >= maxMobProgress || mobProgress >= maxMobProgress)
+        if (mobProgress <= 0 || mobProgress >= maxMobProgress)
         {
             Time.timeScale = 0;
             return true;
@@ -108,7 +108,6 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - rightTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         rightTimer = 0;
         rightCompletions++;
-        monsterStrength += monsterStrengthAddition;
         mobProgress -= monsterStrengthAddition;
     }
 
@@ -117,7 +116,6 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - leftTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         leftTimer = 0;
         leftCompletions++;
-        monsterStrength += monsterStrengthAddition;
         mobProgress -= monsterStrengthAddition;
     }
 }
