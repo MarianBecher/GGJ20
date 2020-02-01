@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class GameGlobals : MonoBehaviour
 {
@@ -21,6 +22,13 @@ public class GameGlobals : MonoBehaviour
     private float rightTimer = 0;
     private float elapsedTime = 0;
 
+    private TextMeshProUGUI timerDisplayTextElement;
+    private TextMeshProUGUI pointDisplayTextElement;
+    private TextMeshProUGUI leftTimerDisplayTextElement;
+    private TextMeshProUGUI leftCountDisplayTextElement;
+    private TextMeshProUGUI rightTimerDisplayTextElement;
+    private TextMeshProUGUI rightCountDisplayTextElement;
+
     public int Points { get => points; }
     public int LeftCompletions { get => leftCompletions; }
     public float LeftTimer { get => leftTimer; }
@@ -28,12 +36,30 @@ public class GameGlobals : MonoBehaviour
     public float RightTimer { get => rightTimer; }
     public float Timer { get => elapsedTime; }
 
+    private void Awake()
+    {
+        timerDisplayTextElement = timerDisplay.GetComponent<TextMeshProUGUI>();
+        pointDisplayTextElement = pointDisplay.GetComponent<TextMeshProUGUI>();
+        leftTimerDisplayTextElement = leftTimerDisplay.GetComponent<TextMeshProUGUI>();
+        leftCountDisplayTextElement = leftCompletionDisplay.GetComponent<TextMeshProUGUI>();
+        rightTimerDisplayTextElement = rightTimerDisplay.GetComponent<TextMeshProUGUI>();
+        rightCountDisplayTextElement = rightCompletionDisplay.GetComponent<TextMeshProUGUI>();
+    }
+
     // Update is called once per frame
     void Update()
     {
         elapsedTime += Time.deltaTime;
         leftTimer += Time.deltaTime;
         rightTimer += Time.deltaTime;
+
+        //Update all displays
+        timerDisplayTextElement.text = string.Format("{0:0.0}", elapsedTime);
+        pointDisplayTextElement.text = points.ToString();
+        leftTimerDisplayTextElement.text = string.Format("{0:0.0}", leftTimer);
+        rightTimerDisplayTextElement.text = string.Format("{0:0.0}", rightTimer);
+        leftCountDisplayTextElement.text = leftCompletions.ToString();
+        rightCountDisplayTextElement.text = rightCompletions.ToString();
     }
 
     public void CompleteRight()
