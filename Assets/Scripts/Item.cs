@@ -118,6 +118,7 @@ public class Item : Interactable
         if (isPickedUp)
         {
             AudioManager.Instance.Play("Drop");
+            Debug.LogError("DROP");
             isPickedUp = false;
             collider.enabled = true;
         }
