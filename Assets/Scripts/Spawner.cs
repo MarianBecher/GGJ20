@@ -1,12 +1,11 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
     [SerializeField] private float defaultSpawnDelay = 3f;
-    [SerializeField] private GameObject itemPrefab;
+    [SerializeField] private Item itemPrefab;
     [SerializeField] private bool movesLeft = true;
+    [SerializeField] private WorkingBench preferedBench;
 
     private float spawnDelay;
     private float elapsedTime = 0f;
@@ -23,17 +22,43 @@ public class Spawner : MonoBehaviour
         if (elapsedTime >= spawnDelay)
         {
             elapsedTime = 0;
+            _SpawnRandomItem();
             RandomSpawnDelay();
-            GameObject item = GameObject.Instantiate(itemPrefab, transform.position, Quaternion.identity);
-            if(movesLeft)
-            {
-                item.GetComponent<Item>().SetMoveToLeft();
-            }
-            else
-            {
-                item.GetComponent<Item>().SetMoveToRight();
-            }
         }
+    }
+
+    private Item _SpawnRandomItem()
+    {
+
+        Item item = Instantiate(itemPrefab, transform.position, Quaternion.identity);
+        item.SetItemType(_GetRandomItemType());
+
+        if (movesLeft)
+        {
+            item.GetComponent<Item>().SetMoveToLeft();
+        }
+        else
+        {
+            item.GetComponent<Item>().SetMoveToRight();
+        }
+        return item;
+    }
+
+    private ItemType _GetRandomItemType()
+    {
+        bool cheat = Random.value < 0.5f;
+        
+        if(cheat && preferedBench)
+        {
+            ItemType[] missingParts = preferedBench.MissingParts;
+            return missingParts[Random.Range(0, missingParts.Length)];
+        }
+        else
+        {
+            System.Array values = System.Enum.GetValues(typeof(ItemType));
+            return (ItemType)values.GetValue(Random.Range(0, values.Length));
+        }
+
     }
 
     private void RandomSpawnDelay()

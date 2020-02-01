@@ -40,6 +40,12 @@ public class Item : Interactable
         decayBarImage = decayBar.GetComponent<Image>();
     }
 
+    public void SetItemType(ItemType type)
+    {
+        this.type = type;
+        sprite.GetComponent<SpriteRenderer>().sprite = sprites[Math.Min((int)type, sprites.Length - 1)];
+    }
+
     private void Update()
     {
         if(!isFrozen)
