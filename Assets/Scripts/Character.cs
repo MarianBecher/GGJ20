@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody2D), typeof(Animator))]
 public class Character : MonoBehaviour
@@ -20,8 +21,8 @@ public class Character : MonoBehaviour
 
     private Item _currentItem;
     private Interactable _possibleInteractable;
-    private int _obstacleCount = 0;
-    private bool FreeSpaceInFront => _obstacleCount == 0;
+    private List<GameObject> _currentObstacles = new List<GameObject>();
+    private bool FreeSpaceInFront => _currentObstacles.Count == 0;
 
     void Awake()
     {
@@ -157,15 +158,24 @@ public class Character : MonoBehaviour
                 _possibleInteractable.EnableHighlight();
             }
         }
-        _obstacleCount++;
+
+        if (collision.gameObject.CompareTag("Obstacle") && !_currentObstacles.Contains(collision.gameObject))
+            _currentObstacles.Add(collision.gameObject);
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if(_possibleInteractable != null && other.gameObject == _possibleInteractable.gameObject)
+        Interactable interactable = other.GetComponent<Interactable>();
+        if (interactable)
         {
-            _possibleInteractable = null;
+            interactable.DisableHighlight();
+            if (_possibleInteractable && other.gameObject == _possibleInteractable.gameObject)
+            {
+                _possibleInteractable = null;
+            }
         }
-        _obstacleCount--;
+
+        if (other.gameObject.CompareTag("Obstacle") && _currentObstacles.Contains(other.gameObject))
+            _currentObstacles.Remove(other.gameObject);
     }
 }

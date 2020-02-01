@@ -46,8 +46,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a8c1ced246fb94a648fad1716e48a3c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  highlight: {fileID: 0}
   type: 0
-  timeToDecay: 10
+  timeToDecay: 20
   graceTime: 2
   conveyorSpeed: 3
   sprite: {fileID: 2681143266266683127}
