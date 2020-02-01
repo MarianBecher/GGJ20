@@ -12,7 +12,7 @@ public class Body
 
     public Body(int amount)
     {
-        bodyPartCount = System.Enum.GetValues(typeof(ItemType)).Length;
+        bodyPartCount = System.Enum.GetValues(typeof(BodyType)).Length;
         bodyParts = new bool[bodyPartCount];
         GenerateBody(amount);
     }
@@ -37,18 +37,63 @@ public class Body
         }
     }
 
-    public ItemType[] GetMissingBodyParts()
+    public ItemType[] GetMissingItemTypes()
     {
         List<ItemType> missing = new List<ItemType>();
-        for(int i = 0; i < bodyParts.Length; i++)
+        for (int i = 0; i < bodyParts.Length; i++)
         {
             if (!bodyParts[i])
-                missing.Add((ItemType) i);
+            {
+                switch (i)
+                {
+                    case 0: missing.Add(ItemType.Head); break;
+                    case 1: missing.Add(ItemType.Torso); break;
+                    case 2:
+                    case 3: missing.Add(ItemType.Arm); break;
+                    case 4:
+                    case 5: missing.Add(ItemType.Hand); break;
+                    case 6:
+                    case 7: missing.Add(ItemType.Leg); break;
+                    case 8:
+                    case 9: missing.Add(ItemType.Foot); break;
+                }
+            }
+        }
+        return missing.ToArray();
+    }
+
+    public BodyType[] GetMissingBodyTypes()
+    {
+        List<BodyType> missing = new List<BodyType>();
+        for (int i = 0; i < bodyParts.Length; i++)
+        {
+            if (!bodyParts[i])
+                missing.Add((BodyType)i);
         }
         return missing.ToArray();
     }
 
     public bool AddBodypart(ItemType type)
+    {
+        switch (type)
+        {
+            case ItemType.Head: return AddSpecificPart(BodyType.Head);
+            case ItemType.Torso: return AddSpecificPart(BodyType.Torso);
+            case ItemType.Arm: return CheckBothPositions(BodyType.LeftArm, BodyType.RightArm);
+            case ItemType.Hand: return CheckBothPositions(BodyType.LeftHand, BodyType.RightHand);
+            case ItemType.Leg: return CheckBothPositions(BodyType.LeftLeg, BodyType.RightLeg);
+            case ItemType.Foot: return CheckBothPositions(BodyType.LeftFoot, BodyType.RightFoot);
+            default: return false;
+        }
+    }
+
+    private bool CheckBothPositions(BodyType type1, BodyType type2)
+    {
+        if (!AddSpecificPart(type1)) return AddSpecificPart(type2);
+        return true;
+    }
+
+    private bool AddSpecificPart(BodyType type)
     {
         if (!bodyParts[(int)type])
         {
