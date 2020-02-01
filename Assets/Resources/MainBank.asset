@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: MainBank
   m_EditorClassIdentifier: 
   AudioEvents:
-  - EventName: PickUp
+  - EventName: Drop
     RandomWeight: 1
     Volume: 1
-    AudioClip: {fileID: 8300000, guid: 782372fdc703f4c2a9e05cacb7436934, type: 3}
+    AudioClip: {fileID: 8300000, guid: e0fc6bd69119448dd8707ddd80a41261, type: 3}
     Priority: 128
     GroupID: 0
     Loop: 0
@@ -43,10 +43,10 @@ MonoBehaviour:
       m_RotationOrder: 4
     SpatialBlend: 0
     ReverbZoneMix: 1
-  - EventName: Drop
+  - EventName: PickUp
     RandomWeight: 1
     Volume: 1
-    AudioClip: {fileID: 8300000, guid: e0fc6bd69119448dd8707ddd80a41261, type: 3}
+    AudioClip: {fileID: 8300000, guid: 782372fdc703f4c2a9e05cacb7436934, type: 3}
     Priority: 128
     GroupID: 0
     Loop: 0
