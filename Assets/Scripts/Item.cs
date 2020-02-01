@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using UnityEngine.UI;
+using UberAudio;
 
 public class Item : Interactable
 {
@@ -101,6 +102,7 @@ public class Item : Interactable
             isOnConveyor = false;
             isPickedUp = true;
             collider.enabled = false;
+            AudioManager.Instance.Play("PickUp");
             Unfreeze();
         }
     }
@@ -112,6 +114,7 @@ public class Item : Interactable
             isPickedUp = false;
             collider.enabled = true;
         }
+        AudioManager.Instance.Play("Drop");
     }
 
     public void SetMoveToLeft()
