@@ -80,7 +80,37 @@ PrefabInstance:
     - target: {fileID: 2676654276882292007, guid: 37cd30132b66c41618e452ea0d17c24a,
         type: 3}
       propertyPath: m_Name
-      value: Freezer-Left
+      value: Freezer
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545357482866314552, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.51023495
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545357482866314552, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.6054576
+      objectReference: {fileID: 0}
+    - target: {fileID: 4545357482866314552, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.735849
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159263457301499421, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.18039213
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159263457301499421, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.856826
+      objectReference: {fileID: 0}
+    - target: {fileID: 6159263457301499421, guid: 37cd30132b66c41618e452ea0d17c24a,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.8862745
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37cd30132b66c41618e452ea0d17c24a, type: 3}
