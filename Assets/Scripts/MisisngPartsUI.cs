@@ -47,7 +47,10 @@ public class MisisngPartsUI : MonoBehaviour
     {
         GameObject go = new GameObject("Slot");
         go.transform.SetParent(_slotContainer);
-        _imageComponents.Add(go.AddComponent<Image>());
+        Image img = go.AddComponent<Image>();
+        ColorUtility.TryParseHtmlString("#B8FFBF", out Color c);
+        img.color = c;
+        _imageComponents.Add(img);
         go.transform.localScale = Vector3.one;
     }
 
