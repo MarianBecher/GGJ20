@@ -14,18 +14,21 @@ public class CharacterController : MonoBehaviour
         _character.Move(new Vector2(horizontal, vertical));
 
         bool interact = Input.GetButtonDown($"Interact_P{_playerIndex}");
+        bool actionDone = false;
         if(interact)
         {
-            _character.Interact();
+            actionDone = _character.Interact();
         }
 
-
-        for (int qteIdx = 0; qteIdx < 4; qteIdx++)
+        if(!actionDone)
         {
-            bool qte = Input.GetButtonDown($"QTE{qteIdx}_P{_playerIndex}");
-            if (qte)
+            for (int qteIdx = 0; qteIdx < 4; qteIdx++)
             {
-                _character.SubmitQTEAction(qteIdx);
+                bool qte = Input.GetButtonDown($"QTE{qteIdx}_P{_playerIndex}");
+                if (qte)
+                {
+                    _character.SubmitQTEAction(qteIdx);
+                }
             }
         }
     }

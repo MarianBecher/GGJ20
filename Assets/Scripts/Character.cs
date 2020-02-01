@@ -61,17 +61,14 @@ public class Character : MonoBehaviour
         _animator.SetBool("Moving", moving);
     }
 
-    public void Interact()
+    public bool Interact()
     {
         bool actionDone = false;
         if (!actionDone) { actionDone = _TryInteractWithHolder(); }
         if (!actionDone) { actionDone = _TryInteractWithWorkBench(); }
         if (!actionDone) { actionDone = _TryPickupItem(); }
         if (!actionDone) { actionDone = _TryDropItem(); }
-        //Pickup
-        //Drop
-        //Place
-        //Build
+        return actionDone;
     }
 
     public void SubmitQTEAction(int btnIdx)

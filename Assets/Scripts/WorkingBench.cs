@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 
 public class WorkingBench : Interactable
 {
@@ -12,7 +13,10 @@ public class WorkingBench : Interactable
 
     [Header("Components")]
     [SerializeField]
-    private SpriteRenderer _qteIndicator;
+    private QTEIndicator _indicatorPrefab;
+    [SerializeField]
+    private Transform _indicatorContainer;
+    private List<QTEIndicator> _indicators = new List<QTEIndicator>();
 
     private Character _interactingCharacter;
     private bool _isInQTE = false;
@@ -59,23 +63,48 @@ public class WorkingBench : Interactable
     private void _StartQTE()
     {
         _isInQTE = true;
-        _qteIndicator.gameObject.SetActive(true);
         _currentQTE = _CreateQTE(_qteLength);
         _currentInputIndex = -1;
         _NextQTEAction();
+
+
+        //Create missing indicators
+        for (int i = _indicators.Count; i < _currentQTE.Length; i++)
+        {
+            _indicators.Add(Instantiate(_indicatorPrefab, _indicatorContainer));
+        }
+
+        //Initialize QTE Indicators
+        for (int i = 0; i < _indicators.Count; i++)
+        {
+            if (i < _currentQTE.Length)
+            {
+                _indicators[i].gameObject.SetActive(true);
+                _indicators[i].Initialze(_qteActions[_currentQTE[i]]);
+            }
+            else
+            {
+                //dont destory, we keep it as object pool for performance reasons
+                _indicators[i].gameObject.SetActive(false);
+            }
+        }
+
+        _indicatorContainer.gameObject.SetActive(true);
     }
 
     private void _NextQTEAction()
     {
+
         _currentInputIndex++;
-        if(_currentInputIndex < _currentQTE.Length)
+        if (_currentInputIndex < _currentQTE.Length)
         {
-            _qteIndicator.sprite = _qteActions[_currentQTE[_currentInputIndex]];
+            if(_currentInputIndex > 0)
+                _indicators[_currentInputIndex - 1].SetDone();
         }
         else
         {
             _isInQTE = false;
-            _qteIndicator.gameObject.SetActive(false);
+            _indicatorContainer.gameObject.SetActive(false);
             _interactingCharacter.disableMovement = false;
         }
     }
