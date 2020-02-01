@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 using UnityEngine.UI;
 
 public class WorkingBench : Interactable
@@ -9,16 +10,13 @@ public class WorkingBench : Interactable
     Sprite[] _qteActions;
     [SerializeField]
     private int _qteLength = 4;
-    [SerializeField]
-    private float _timePerQTE = 1.0f;
+    [SerializeField] private SpriteRenderer[] bodyPartSprites;
 
     [Header("Components")]
     [SerializeField]
     private QTEIndicator _indicatorPrefab;
     [SerializeField]
     private Transform _indicatorContainer;
-    [SerializeField]
-    private Text _debugText;
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
     private Body _currentBody;
     public ItemType[] MissingParts => _currentBody.GetMissingBodyParts();
@@ -151,12 +149,14 @@ public class WorkingBench : Interactable
 
     private void _UpdateUI()
     {
-        List<int> missingParts = new List<int>();
-        foreach(ItemType t in _currentBody.GetMissingBodyParts())
+        System.Array values = System.Enum.GetValues(typeof(ItemType));
+        ItemType[] missing = _currentBody.GetMissingBodyParts();
+        for (int i = 0; i < values.Length; i++)
         {
-            missingParts.Add(((int) t) + 1);
+            ItemType t = (ItemType)values.GetValue(i);
+            bodyPartSprites[i].gameObject.SetActive(!missing.Contains(t));
+
         }
-        _debugText.text = string.Join("|", missingParts);
     }
 
     private bool _IsValidItem(Item itm)
