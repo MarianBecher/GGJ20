@@ -76,18 +76,23 @@ public class Item : Interactable
             }
             transform.position = pos;
 
-            if (
-                (conveyorMovesLeft && transform.position.x <= shredderThreshold)
-                || (!conveyorMovesLeft && transform.position.x >= shredderThreshold)
-            )
+            if (Mathf.Abs(transform.position.x) <= shredderThreshold)
             {
+                GetComponent<Animator>().SetTrigger("Shredder");
                 AudioManager.Instance.Play("Shredder");
-                Destroy(gameObject);
+                StartCoroutine(DelayedDestroy(1.0f));
             }
         }
         float percentage = decayTimeElapsed / timeToDecay;
         decayBarImage.fillAmount = 1 - percentage;
         decayBarImage.color = new Vector4(percentage, 1 - percentage, 0, 1);
+    }
+
+    private IEnumerator DelayedDestroy(float time)
+    {
+        yield return new WaitForSeconds(1.0f);
+        Destroy(gameObject);
+
     }
 
     private void LateUpdate()
