@@ -16,9 +16,9 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private GameObject pointDisplay;
     [SerializeField] private GameObject timerDisplay;
     [SerializeField] private GameObject leftCompletionDisplay;
-    [SerializeField] private GameObject leftTimerDisplay;
     [SerializeField] private GameObject rightCompletionDisplay;
-    [SerializeField] private GameObject rightTimerDisplay;
+    [SerializeField] private GameObject scoreScreenDisplay;
+    [SerializeField] private GameObject victoryDisplay;
     [SerializeField] private Image mobProgressDisplay;
     [SerializeField] private Image monsterStrengthDisplay;
     [SerializeField] private WorkingBench leftBench;
@@ -35,10 +35,9 @@ public class GameGlobals : MonoBehaviour
 
     private TextMeshProUGUI timerDisplayTextElement;
     private TextMeshProUGUI pointDisplayTextElement;
-    private TextMeshProUGUI leftTimerDisplayTextElement;
     private TextMeshProUGUI leftCountDisplayTextElement;
-    private TextMeshProUGUI rightTimerDisplayTextElement;
     private TextMeshProUGUI rightCountDisplayTextElement;
+    private TextMeshProUGUI victoryDisplayTextElement;
 
     public int Points { get => points; }
     public int LeftCompletions { get => leftCompletions; }
@@ -51,10 +50,9 @@ public class GameGlobals : MonoBehaviour
     {
         timerDisplayTextElement = timerDisplay.GetComponent<TextMeshProUGUI>();
         pointDisplayTextElement = pointDisplay.GetComponent<TextMeshProUGUI>();
-        leftTimerDisplayTextElement = leftTimerDisplay.GetComponent<TextMeshProUGUI>();
         leftCountDisplayTextElement = leftCompletionDisplay.GetComponent<TextMeshProUGUI>();
-        rightTimerDisplayTextElement = rightTimerDisplay.GetComponent<TextMeshProUGUI>();
         rightCountDisplayTextElement = rightCompletionDisplay.GetComponent<TextMeshProUGUI>();
+        victoryDisplayTextElement = victoryDisplay.GetComponent<TextMeshProUGUI>();
     }
 
     void OnEnable()
@@ -81,14 +79,28 @@ public class GameGlobals : MonoBehaviour
         mobProgress += Time.deltaTime;
 
         //Update all displays
-        timerDisplayTextElement.text = string.Format("{0:0.0}", elapsedTime);
-        pointDisplayTextElement.text = points.ToString();
-        leftTimerDisplayTextElement.text = string.Format("{0:0.0}", leftTimer);
-        rightTimerDisplayTextElement.text = string.Format("{0:0.0}", rightTimer);
-        leftCountDisplayTextElement.text = leftCompletions.ToString();
-        rightCountDisplayTextElement.text = rightCompletions.ToString();
         mobProgressDisplay.fillAmount = mobProgress / maxMobProgress;
         monsterStrengthDisplay.fillAmount = monsterStrength / maxMobProgress;
+
+        scoreScreenDisplay.SetActive(GameOver());
+        if (scoreScreenDisplay.active)
+        {
+            timerDisplayTextElement.text = string.Format("Elapsed Time: {0:0.0}", elapsedTime);
+            pointDisplayTextElement.text = string.Format("Points: {0}", points);
+            leftCountDisplayTextElement.text = string.Format("Gregor finished {0} monsters.", leftCompletions);
+            rightCountDisplayTextElement.text = string.Format("Frank finished {0} monsters.", rightCompletions);
+            victoryDisplayTextElement.text = monsterStrength >= maxMobProgress ? "Victory!" : "Defeat";
+        }
+    }
+
+    private bool GameOver()
+    {
+        if (monsterStrength >= maxMobProgress || mobProgress >= maxMobProgress)
+        {
+            Time.timeScale = 0;
+            return true;
+        }
+        return false;
     }
 
     public void CompleteRight()
