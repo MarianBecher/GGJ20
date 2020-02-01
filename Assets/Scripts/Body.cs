@@ -2,18 +2,19 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Body : MonoBehaviour
+public class Body
 {
-    [SerializeField] private int amountGenerated = 7;
+    private const int defaultParts = 7;
     private int bodyPartCount;
-    [Header("Nur zum angucken!")]
-    [SerializeField] private bool[] bodyParts;
+    private bool[] bodyParts;
 
-    private void Awake()
+    public Body() : this(defaultParts) { }
+
+    public Body(int amount)
     {
         bodyPartCount = System.Enum.GetValues(typeof(ItemType)).Length;
         bodyParts = new bool[bodyPartCount];
-        GenerateBody(amountGenerated);
+        GenerateBody(amount);
     }
 
     private void GenerateBody(int amountOfParts)
