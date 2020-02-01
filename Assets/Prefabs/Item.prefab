@@ -56,14 +56,18 @@ MonoBehaviour:
   canvas: {fileID: 2681143265661415592}
   decayBar: {fileID: 2681143266089353699}
   collider: {fileID: 1225769908681889138}
+  shredderThreshold: 0
   sprites:
-  - {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10915, guid: 0000000000000000f000000000000000, type: 0}
-  - {fileID: 10917, guid: 0000000000000000f000000000000000, type: 0}
-  testThreshold: 0
+  - {fileID: 21300000, guid: 2ca98755ec2a19e47b382b58371d0028, type: 3}
+  - {fileID: 21300000, guid: 9c14309658dbe284ca5e3b892e757217, type: 3}
+  - {fileID: 21300000, guid: c01ec7e49f972f5488f062ff43f32838, type: 3}
+  - {fileID: 21300000, guid: 47042a8e16302b746a7f19d26dfa5d08, type: 3}
+  - {fileID: 21300000, guid: abe717206b0d097479c8b33f45319c83, type: 3}
+  - {fileID: 21300000, guid: 843042a24b6716c4eae3d7d9df5fcd52, type: 3}
+  - {fileID: 21300000, guid: 48beed2e66dbb2c4a8827613322bc879, type: 3}
+  - {fileID: 21300000, guid: c6140bff4b637cd4781f32e9fa515b39, type: 3}
+  - {fileID: 21300000, guid: 45fa0d58f14e3924aa1a266cb0d17039, type: 3}
+  - {fileID: 21300000, guid: f3700b160c841f246af2f7b501ef20d2, type: 3}
 --- !u!58 &1225769908681889138
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -278,7 +282,7 @@ Transform:
   m_GameObject: {fileID: 2681143266266683127}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 10, y: 10, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 2681143265602137064}
   m_RootOrder: 0
@@ -322,7 +326,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Sprite: {fileID: 21300000, guid: 2ca98755ec2a19e47b382b58371d0028, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
