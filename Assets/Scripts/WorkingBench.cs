@@ -21,6 +21,8 @@ public class WorkingBench : Interactable
     [SerializeField]
     private Transform _indicatorContainer;
     private List<QTEIndicator> _indicators = new List<QTEIndicator>();
+    [SerializeField]
+    private Image _qteFill;
     private Body _currentBody;
     public ItemType[] MissingParts => _currentBody.GetMissingItemTypes();
 
@@ -131,6 +133,8 @@ public class WorkingBench : Interactable
     {
 
         _currentInputIndex++;
+        _qteFill.fillAmount = _currentInputIndex / (float)_currentQTE.Length;
+
         if (_currentInputIndex < _currentQTE.Length)
         {
             if (_currentInputIndex > 0)
