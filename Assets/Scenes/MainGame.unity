@@ -2452,6 +2452,7 @@ MonoBehaviour:
   monsterStrengthAddition: 90
   mobScalingFactor: 4
   timePenalty: 5
+  fightBackSpeed: 1
   pointDisplay: {fileID: 2094661919}
   timerDisplay: {fileID: 792917023}
   leftCompletionDisplay: {fileID: 610634905}
@@ -5988,14 +5989,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1320987792, guid: 9ad3088fac6e3a642a3eb6a48f34b66d, type: 3}
-      propertyPath: m_Intensity
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1320987792, guid: 9ad3088fac6e3a642a3eb6a48f34b66d, type: 3}
-      propertyPath: m_PointLightOuterRadius
-      value: 17.4
-      objectReference: {fileID: 0}
     - target: {fileID: 1206516826030838170, guid: 9ad3088fac6e3a642a3eb6a48f34b66d,
         type: 3}
       propertyPath: m_LocalPosition.x
