@@ -149,8 +149,10 @@ public class WorkingBench : Interactable
     {
         AudioManager.Instance.Play("MonsterAlive");
         GetComponent<Animator>().SetTrigger("Complete");
-        OnBodyCompleted?.Invoke();
-        StartCoroutine(DelayedAction(_CreateNewBody, 1.5f));
+        StartCoroutine(DelayedAction(()=> {
+            _CreateNewBody();
+            OnBodyCompleted?.Invoke();
+        }, 1.5f));
     }
 
     private IEnumerator DelayedAction(Action a, float delay)
