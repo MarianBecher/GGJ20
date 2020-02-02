@@ -1307,7 +1307,7 @@ MonoBehaviour:
     RandomWeight: 1
     Volume: 1
     AudioClip: {fileID: 8300000, guid: a26eef6cdb2af47609c20a681c480a7a, type: 3}
-    Priority: 128
+    Priority: 0
     GroupID: 0
     Loop: 0
     StopWhenSourceDies: 0

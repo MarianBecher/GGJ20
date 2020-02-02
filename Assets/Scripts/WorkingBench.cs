@@ -136,6 +136,7 @@ public class WorkingBench : Interactable
             _interactingCharacter.disableMovement = false;
             OnBodyCompleted?.Invoke();
             AudioManager.Instance.Play("MonsterAlive");
+            GetComponent<Animator>().SetTrigger("Complete");
             _CreateNewBody();
         }
     }
