@@ -7,6 +7,8 @@ using UberAudio;
 
 public class GameGlobals : MonoBehaviour
 {
+    private static bool firstMonster = false;
+
     [Header("Balancing")]
     [SerializeField] private float bonusTimeThreshold = 60;
     [SerializeField] private int pointsPerCompletion = 500;
@@ -28,6 +30,7 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private Image mobProgressDisplay;
     [SerializeField] private WorkingBench leftBench;
     [SerializeField] private WorkingBench rightBench;
+    [SerializeField] private Animator achivementAnimator;
 
     private int points = 0;
     private int leftCompletions = 0;
@@ -119,6 +122,7 @@ public class GameGlobals : MonoBehaviour
         rightCompletions++;
         //mobProgress -= monsterStrengthAddition;
         fightBackValue += monsterStrengthAddition;
+        CheckAchivement();
     }
 
     public void CompleteLeft()
@@ -128,5 +132,15 @@ public class GameGlobals : MonoBehaviour
         leftCompletions++;
         //mobProgress -= monsterStrengthAddition;
         fightBackValue += monsterStrengthAddition;
+        CheckAchivement();
+    }
+
+    void CheckAchivement()
+    {
+        if(!firstMonster)
+        {
+            achivementAnimator.SetTrigger("Show");
+            firstMonster = true;
+        }
     }
 }
