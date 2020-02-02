@@ -13,6 +13,7 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private int monsterStrengthAddition = 60;
     [SerializeField] private float mobScalingFactor = 2;
     [SerializeField] private float timePenalty = 5;
+    [SerializeField] private float fightBackSpeed = 1;
 
     [Header("Referenzen")]
     [SerializeField] private GameObject pointDisplay;
@@ -34,6 +35,7 @@ public class GameGlobals : MonoBehaviour
     private float rightTimer = 0;
     private float elapsedTime = 0;
     private float mobProgress = 150;
+    private float fightBackValue = 0;
 
     private TextMeshProUGUI timerDisplayTextElement;
     private TextMeshProUGUI pointDisplayTextElement;
@@ -75,9 +77,12 @@ public class GameGlobals : MonoBehaviour
         elapsedTime += Time.deltaTime;
         leftTimer += Time.deltaTime;
         rightTimer += Time.deltaTime;
-        mobProgress += Time.deltaTime * mobScalingFactor; 
+        mobProgress += Time.deltaTime * mobScalingFactor;
         fightDisplay.transform.localPosition = new Vector3((mobProgress - (maxMobProgress / 2)) * -2, 0, 0);
 
+        float frameChange = fightBackValue * fightBackSpeed * Time.deltaTime;
+        fightBackValue = fightBackValue > 0 ? fightBackValue - frameChange : 0;
+        mobProgress = frameChange > 0 ? mobProgress - frameChange : mobProgress;
         //Update all displays
         mobProgressDisplay.fillAmount = mobProgress / maxMobProgress;
 
@@ -108,7 +113,8 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - rightTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         rightTimer = 0;
         rightCompletions++;
-        mobProgress -= monsterStrengthAddition;
+        //mobProgress -= monsterStrengthAddition;
+        fightBackValue += monsterStrengthAddition;
     }
 
     public void CompleteLeft()
@@ -116,6 +122,7 @@ public class GameGlobals : MonoBehaviour
         points += pointsPerCompletion + Mathf.RoundToInt(Mathf.Max(((bonusTimeThreshold - leftTimer) / bonusTimeThreshold), 0) * pointsPerCompletion);
         leftTimer = 0;
         leftCompletions++;
-        mobProgress -= monsterStrengthAddition;
+        //mobProgress -= monsterStrengthAddition;
+        fightBackValue += monsterStrengthAddition;
     }
 }
