@@ -27,6 +27,7 @@ public class GameGlobals : MonoBehaviour
     [SerializeField] private GameObject victoryDisplay;
     [SerializeField] private GameObject defeatDisplay;
     [SerializeField] private GameObject fightDisplay;
+    [SerializeField] private GameObject tutorialDisplay;
     [SerializeField] private Image mobProgressDisplay;
     [SerializeField] private WorkingBench leftBench;
     [SerializeField] private WorkingBench rightBench;
@@ -60,6 +61,7 @@ public class GameGlobals : MonoBehaviour
         pointDisplayTextElement = pointDisplay.GetComponent<TextMeshProUGUI>();
         leftCountDisplayTextElement = leftCompletionDisplay.GetComponent<TextMeshProUGUI>();
         rightCountDisplayTextElement = rightCompletionDisplay.GetComponent<TextMeshProUGUI>();
+        tutorialDisplay.SetActive(!firstMonster);
     }
 
     void OnEnable()
@@ -137,7 +139,7 @@ public class GameGlobals : MonoBehaviour
 
     void CheckAchivement()
     {
-        if(!firstMonster)
+        if (!firstMonster)
         {
             achivementAnimator.SetTrigger("Show");
             firstMonster = true;
