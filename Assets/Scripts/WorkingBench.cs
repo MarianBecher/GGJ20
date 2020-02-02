@@ -74,8 +74,7 @@ public class WorkingBench : Interactable
         if ((Input.GetKeyDown(KeyCode.F1) && name.EndsWith("Left")) || (Input.GetKeyDown(KeyCode.F2) && name.EndsWith("Right")))
             _CompleteBody();
         #endif
-
-
+        
         if (!_isInQTE)
             return;
 
