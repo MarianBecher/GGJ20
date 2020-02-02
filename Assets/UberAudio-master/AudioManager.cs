@@ -181,7 +181,7 @@ namespace UberAudio
             else
             {
                 Instance = this;
-                UnityEngine.Object.DontDestroyOnLoad(gameObject);
+                //UnityEngine.Object.DontDestroyOnLoad(gameObject);
             }
         }
     

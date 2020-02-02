@@ -67,6 +67,12 @@ public class WorkingBench : Interactable
 
     private void Update()
     {
+        #if UNITY_EDITOR
+        if ((Input.GetKeyDown(KeyCode.F1) && name.EndsWith("Left")) || (Input.GetKeyDown(KeyCode.F2) && name.EndsWith("Right")))
+            _CompleteBody();
+        #endif
+
+
         if (!_isInQTE)
             return;
 
@@ -134,11 +140,16 @@ public class WorkingBench : Interactable
             _isInQTE = false;
             _indicatorContainer.gameObject.SetActive(false);
             _interactingCharacter.disableMovement = false;
-            OnBodyCompleted?.Invoke();
-            AudioManager.Instance.Play("MonsterAlive");
-            GetComponent<Animator>().SetTrigger("Complete");
-            _CreateNewBody();
+            _CompleteBody();
         }
+    }
+
+    private void _CompleteBody()
+    {
+        OnBodyCompleted?.Invoke();
+        AudioManager.Instance.Play("MonsterAlive");
+        GetComponent<Animator>().SetTrigger("Complete");
+        _CreateNewBody();
     }
 
     private void _CreateNewBody()
@@ -174,4 +185,5 @@ public class WorkingBench : Interactable
         }
         return actions;
     }
+
 }
