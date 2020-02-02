@@ -1,13 +1,13 @@
 # Fix-It Frankenstein - GGJ20
 
-[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MarianBecher/GGJ20?style=flat-square&label=Release&color=lightgrey)](https://github.com/MarianBecher/GGJ20/releases)
+[![GitHub tag (latest SemVer)](https://img.shields.io/github/v/tag/MarianBecher/GGJ20?style=flat-square&label=Release&color=blueviolet)](https://github.com/MarianBecher/GGJ20/releases)
 [![](https://img.shields.io/badge/Global%20Gamejam-2020-blue?style=flat-square)](https://globalgamejam.org/2020/games/fix-it-frankenstein-8)
 [![](https://img.shields.io/badge/IG%20Jam-GGJ2020-brightgreen?style=flat-square)](https://igjam.eu/jams/global-game-jam-2020/777)
 [![](https://img.shields.io/badge/itch.io-fix--it--frankenstein-orange?style=flat-square)](https://theras.itch.io/fix-it-frankenstein)
 
-[![](https://img.shields.io/badge/Windows-v1.1-blueviolet?style=for-the-badge&logo=windows)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-windows.zip)
-[![](https://img.shields.io/badge/MacOS-v1.1-blueviolet?style=for-the-badge&logo=apple)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-macos.zip)
-[![](https://img.shields.io/badge/Linux-v1.0-blueviolet?style=for-the-badge&logo=linux)](https://github.com/MarianBecher/GGJ20/releases/download/1.0.0/fix-it-frankenstein-v100-linux.zip)
+[![](https://img.shields.io/badge/Windows-v1.1-lightgrey?style=for-the-badge&logo=windows)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-windows.zip)
+[![](https://img.shields.io/badge/MacOS-v1.1-lightgrey?style=for-the-badge&logo=apple)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-macos.zip)
+[![](https://img.shields.io/badge/Linux-v1.0-lightgrey?style=for-the-badge&logo=linux)](https://github.com/MarianBecher/GGJ20/releases/download/1.0.0/fix-it-frankenstein-v100-linux.zip)
 
 ![](./Assets/Resources/Images/titel.png)
 
