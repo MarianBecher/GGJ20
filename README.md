@@ -5,6 +5,8 @@
 [![](https://img.shields.io/badge/itch.io-fix--it--frankenstein-orange?style=flat-square)](https://theras.itch.io/fix-it-frankenstein)
 [![](https://img.shields.io/badge/IG%20Jam-GGJ2020-brightgreen?style=flat-square)](https://igjam.eu/jams/global-game-jam-2020/777)
 
+![](./Assets/Resources/Images/titel.png)
+
 ## Description
 
 ### EN - english
