@@ -47,6 +47,9 @@ public class GameGlobals : MonoBehaviour
     private TextMeshProUGUI pointDisplayTextElement;
     private TextMeshProUGUI leftCountDisplayTextElement;
     private TextMeshProUGUI rightCountDisplayTextElement;
+    [SerializeField] private Transform leftScoreContainer;
+    [SerializeField] private Transform rightScoreContainer;
+    [SerializeField] private GameObject scoreIcon;
 
     public int Points { get => points; }
     public int LeftCompletions { get => leftCompletions; }
@@ -98,12 +101,29 @@ public class GameGlobals : MonoBehaviour
         {
             timerDisplayTextElement.text = string.Format("{0:0.0}", elapsedTime);
             pointDisplayTextElement.text = string.Format("{0:0.}", Mathf.Max(points - (elapsedTime * timePenalty), 0));
-            leftCountDisplayTextElement.text = string.Format("{0}x", leftCompletions);
-            rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
+            //leftCountDisplayTextElement.text = string.Format("{0}x", leftCompletions);
+            //rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
             defeatDisplay.SetActive(mobProgress >= maxMobProgress);
             victoryDisplay.SetActive(mobProgress <= 0);
             AudioManager.Instance.Play(mobProgress <= 0 ? "GameWon" : "GameOver");
+            StartCoroutine(Score());
             gamedone = true;
+        }
+    }
+
+    private IEnumerator Score()
+    {
+        int maxScore = Mathf.Max(leftCompletions, rightCompletions);
+        for (int i = 0; i < maxScore; i++)
+        {
+            if (i < leftCompletions)
+                Instantiate(scoreIcon, leftScoreContainer);
+
+            if (i < rightCompletions)
+                Instantiate(scoreIcon, rightScoreContainer);
+
+
+            yield return new WaitForSecondsRealtime(0.3f);
         }
     }
 
