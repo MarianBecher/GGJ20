@@ -7,6 +7,20 @@
 
 ![](./Assets/Resources/Images/titel.png)
 
+## Controls
+
+### Controller
+
+* **Movement:** `LeftStick`
+* **Grab/Drop:** `A`
+* **QTE:** `A` `B` `X` `Y`
+
+### Keyboard
+
+* **Movement:** `W` `S` `A` `D` | `ArrowKeys`
+* **Grab/Drop:** `E` | `Space`
+* **QTE:** `1` `2` `3` `4` | `V` `B` `N` `M` (green, red, blue, yellow)
+
 ## Description
 
 ### EN - english
