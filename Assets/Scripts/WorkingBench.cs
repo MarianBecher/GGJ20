@@ -4,6 +4,7 @@ using System.Linq;
 using UnityEngine.UI;
 using System;
 using UberAudio;
+using System.Collections;
 
 public class WorkingBench : Interactable
 {
@@ -146,12 +147,18 @@ public class WorkingBench : Interactable
 
     private void _CompleteBody()
     {
-        OnBodyCompleted?.Invoke();
         AudioManager.Instance.Play("MonsterAlive");
         GetComponent<Animator>().SetTrigger("Complete");
-        _CreateNewBody();
+        OnBodyCompleted?.Invoke();
+        StartCoroutine(DelayedAction(_CreateNewBody, 1.5f));
     }
 
+    private IEnumerator DelayedAction(Action a, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        a?.Invoke();
+    }
+    
     private void _CreateNewBody()
     {
         _currentBody = new Body(6);
