@@ -52,6 +52,7 @@ public class WorkingBench : Interactable
         _currentItemType = item.Type;
         Destroy(item.gameObject);
         OnBodyPartsChanged?.Invoke();
+        AudioManager.Instance.Play("Combine");
 
         if (_currentBody.BodyIsComplete())
         {

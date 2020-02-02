@@ -1215,9 +1215,9 @@ MonoBehaviour:
     ReverbZoneMix: 1
   - EventName: Shredder
     RandomWeight: 1
-    Volume: 0.15
+    Volume: 0.124
     AudioClip: {fileID: 8300000, guid: b31b8676f4c9e4aa7875598e06b966e6, type: 3}
-    Priority: 128
+    Priority: 256
     GroupID: 0
     Loop: 0
     StopWhenSourceDies: 0

@@ -21,6 +21,7 @@ public class Item : Interactable
     [Header("Sprite Images")]
     [SerializeField] private Sprite[] sprites;
     [SerializeField] private Sprite[] highlights;
+    private bool isDestroying = false;
 
 
     private bool isOnConveyor = true;
@@ -79,10 +80,10 @@ public class Item : Interactable
             }
             transform.position = pos;
 
-            if (Mathf.Abs(transform.position.x) <= shredderThreshold)
+            if (!isDestroying && Mathf.Abs(transform.position.x) <= shredderThreshold)
             {
+                isDestroying = true;
                 GetComponent<Animator>().SetTrigger("Shredder");
-                AudioManager.Instance.Play("Shredder");
                 collider.enabled = false;
                 StartCoroutine(DelayedDestroy(1.0f));
             }
@@ -95,6 +96,7 @@ public class Item : Interactable
     private IEnumerator DelayedDestroy(float time)
     {
         yield return new WaitForSeconds(1.0f);
+        AudioManager.Instance.Play("Shredder");
         Destroy(gameObject);
 
     }
