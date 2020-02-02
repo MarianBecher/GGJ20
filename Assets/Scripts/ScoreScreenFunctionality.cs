@@ -5,12 +5,27 @@ using UnityEngine.SceneManagement;
 
 public class ScoreScreenFunctionality : MonoBehaviour
 {
+    [SerializeField] private float graceTimer = 3;
+
+    private bool inputAllowed = false;
+
+    private void OnEnable()
+    {
+        StartCoroutine(GraceTimeCoroutine());
+    }
+
     void Update()
     {
-        if (Input.anyKeyDown)
+        if (inputAllowed && Input.anyKeyDown)
         {
             Time.timeScale = 1;
             SceneManager.LoadScene("Title");
         }
+    }
+
+    private IEnumerator GraceTimeCoroutine()
+    {
+        yield return new WaitForSecondsRealtime(graceTimer);
+        inputAllowed = true;
     }
 }
