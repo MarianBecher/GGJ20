@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UberAudio;
 
 public class GameGlobals : MonoBehaviour
 {
@@ -36,6 +37,7 @@ public class GameGlobals : MonoBehaviour
     private float elapsedTime = 0;
     private float mobProgress = 150;
     private float fightBackValue = 0;
+    private bool gamedone = false;
 
     private TextMeshProUGUI timerDisplayTextElement;
     private TextMeshProUGUI pointDisplayTextElement;
@@ -87,7 +89,7 @@ public class GameGlobals : MonoBehaviour
         mobProgressDisplay.fillAmount = mobProgress / maxMobProgress;
 
         scoreScreenDisplay.SetActive(GameOver());
-        if (scoreScreenDisplay.active)
+        if (!gamedone && scoreScreenDisplay.active)
         {
             timerDisplayTextElement.text = string.Format("Elapsed Time: {0:0.0}", elapsedTime);
             pointDisplayTextElement.text = string.Format("Points: {0:0.}", Mathf.Max(points - (elapsedTime * timePenalty), 0));
@@ -95,6 +97,8 @@ public class GameGlobals : MonoBehaviour
             rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
             defeatDisplay.SetActive(mobProgress >= maxMobProgress);
             victoryDisplay.SetActive(mobProgress <= 0);
+            AudioManager.Instance.Play(mobProgress <= 0 ? "GameWon" : "GameOver");
+            gamedone = true;
         }
     }
 
