@@ -91,8 +91,8 @@ public class GameGlobals : MonoBehaviour
         scoreScreenDisplay.SetActive(GameOver());
         if (!gamedone && scoreScreenDisplay.active)
         {
-            timerDisplayTextElement.text = string.Format("Elapsed Time: {0:0.0}", elapsedTime);
-            pointDisplayTextElement.text = string.Format("Points: {0:0.}", Mathf.Max(points - (elapsedTime * timePenalty), 0));
+            timerDisplayTextElement.text = string.Format("{0:0.0}", elapsedTime);
+            pointDisplayTextElement.text = string.Format("{0:0.}", Mathf.Max(points - (elapsedTime * timePenalty), 0));
             leftCountDisplayTextElement.text = string.Format("{0}x", leftCompletions);
             rightCountDisplayTextElement.text = string.Format("{0}x", rightCompletions);
             defeatDisplay.SetActive(mobProgress >= maxMobProgress);
