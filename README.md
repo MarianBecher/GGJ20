@@ -5,9 +5,9 @@
 [![](https://img.shields.io/badge/IG%20Jam-GGJ2020-brightgreen?style=flat-square)](https://igjam.eu/jams/global-game-jam-2020/777)
 [![](https://img.shields.io/badge/itch.io-fix--it--frankenstein-orange?style=flat-square)](https://theras.itch.io/fix-it-frankenstein)
 
-[![](https://img.shields.io/badge/MacOS-v1.1-blueviolet?style=for-the-badge&logo=apple)]()
-[![](https://img.shields.io/badge/Windows-v1.1-blueviolet?style=for-the-badge&logo=windows)]()
-[![](https://img.shields.io/badge/Linux-v1.0-blueviolet?style=for-the-badge&logo=linux)]()
+[![](https://img.shields.io/badge/Windows-v1.1-blueviolet?style=for-the-badge&logo=windows)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-windows.zip)
+[![](https://img.shields.io/badge/MacOS-v1.1-blueviolet?style=for-the-badge&logo=apple)](https://github.com/MarianBecher/GGJ20/releases/download/1.1.0/fix-it-frankenstein-v110-macos.zip)
+[![](https://img.shields.io/badge/Linux-v1.0-blueviolet?style=for-the-badge&logo=linux)](https://github.com/MarianBecher/GGJ20/releases/download/1.0.0/fix-it-frankenstein-v100-linux.zip)
 
 ![](./Assets/Resources/Images/titel.png)
 
